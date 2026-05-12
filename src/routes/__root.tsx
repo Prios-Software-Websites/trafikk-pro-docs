@@ -1,14 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import {
-  Outlet,
-  Link,
-  createRootRouteWithContext,
-  useRouter,
-  HeadContent,
-  Scripts,
-} from "@tanstack/react-router";
+import { Outlet, Link, createRootRouteWithContext, useRouter, HeadContent } from "@tanstack/react-router";
 
-import appCss from "../styles.css?url";
 import { I18nProvider } from "@/lib/i18n";
 import { AuthProvider } from "@/lib/auth";
 import { NotificationsProvider } from "@/lib/notifications";
@@ -67,40 +59,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "stylesheet", href: appCss }],
+    links: [],
   }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
 
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="nb">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
-    <QueryClientProvider client={queryClient}>
-      <I18nProvider>
-        <AuthProvider>
-          <NotificationsProvider>
-            <Outlet />
-            <Toaster richColors position="top-right" />
-          </NotificationsProvider>
-        </AuthProvider>
-      </I18nProvider>
-    </QueryClientProvider>
+    <>
+      <HeadContent />
+      <QueryClientProvider client={queryClient}>
+        <I18nProvider>
+          <AuthProvider>
+            <NotificationsProvider>
+              <Outlet />
+              <Toaster richColors position="top-right" />
+            </NotificationsProvider>
+          </AuthProvider>
+        </I18nProvider>
+      </QueryClientProvider>
+    </>
   );
 }
