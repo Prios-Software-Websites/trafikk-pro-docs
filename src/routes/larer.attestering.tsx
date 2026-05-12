@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useAuth } from "@/lib/auth";
 import { useI18n } from "@/lib/i18n";
 import { studentsForTeacher } from "@/lib/mock-data";
+import { useNotifications } from "@/lib/notifications";
 import { useState } from "react";
 import { toast } from "sonner";
 import { ShieldCheck } from "lucide-react";
@@ -22,12 +23,18 @@ function Attest() {
   const { user } = useAuth();
   const { t } = useI18n();
   const my = studentsForTeacher(user!.id);
+  const { create } = useNotifications();
   const [step, setStep] = useState(1);
   const [signed, setSigned] = useState(false);
 
   const sign = () => {
     setSigned(true);
-    toast.success("Time signert med Sikker PIN", { description: "Lagret i revisjonslogg. Sendt til mock TSK-kø." });
+    const stu = my[0];
+    if (stu) {
+      create({ recipientId: stu.id, trigger: "mandatory_completed", studentId: stu.id, trainingElement: "Obligatorisk element trinn 3" });
+      if (stu.parentId) create({ recipientId: stu.parentId, trigger: "mandatory_completed", studentId: stu.id, trainingElement: "Obligatorisk element trinn 3" });
+    }
+    toast.success("Time signert med Sikker PIN", { description: "Lagret i revisjonslogg. Varsel sendt til elev (mock)." });
   };
 
   return (
