@@ -57,6 +57,7 @@ const navByRole: Record<Role, Item[]> = {
     { to: "/foresatt/ovingskjoring", key: "nav_practice", icon: <MapPinned className="size-4" /> },
     { to: "/foresatt/meldinger", key: "nav_messages", icon: <MessageSquare className="size-4" /> },
     { to: "/foresatt/varslinger", key: "nav_notifications", icon: <BellRing className="size-4" /> },
+    { to: "/foresatt/sms", key: "nav_sms", icon: <Smartphone className="size-4" /> },
   ],
 };
 
