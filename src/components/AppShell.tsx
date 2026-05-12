@@ -49,6 +49,7 @@ const navByRole: Record<Role, Item[]> = {
     { to: "/elev/betaling", key: "nav_payment", icon: <CreditCard className="size-4" /> },
     { to: "/elev/meldinger", key: "nav_messages", icon: <MessageSquare className="size-4" /> },
     { to: "/elev/varslinger", key: "nav_notifications", icon: <BellRing className="size-4" /> },
+    { to: "/elev/sms", key: "nav_sms", icon: <Smartphone className="size-4" /> },
   ],
   parent: [
     { to: "/foresatt", key: "nav_overview", icon: <LayoutDashboard className="size-4" /> },
