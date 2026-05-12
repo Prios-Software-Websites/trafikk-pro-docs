@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import {
   LayoutDashboard, Users, GraduationCap, Calendar, IdCard, ClipboardList, Eye,
   Send, Wallet, MessageSquare, Settings, ScrollText, LogOut, BookOpenCheck,
-  CarFront, MapPinned, CreditCard, ChevronDown, ShieldCheck, BellRing,
+  CarFront, MapPinned, CreditCard, ChevronDown, ShieldCheck, BellRing, Smartphone,
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import {
