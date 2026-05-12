@@ -41,6 +41,7 @@ export const TRIGGER_LABELS: Record<TriggerEvent, string> = {
   teacher_approval_expiring: "Lærergodkjenning utløper snart",
   backup_signature_required: "Månedlig backup må signeres",
   tsk_report_failed: "TSK-rapportering feilet — manuell oppfølging",
+  custom_sms: "Egendefinert melding (SMS)",
 };
 
 export type NotificationItem = {
