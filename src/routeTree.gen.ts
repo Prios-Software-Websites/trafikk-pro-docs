@@ -27,6 +27,7 @@ import { Route as ForesattOvingskjoringRouteImport } from './routes/foresatt.ovi
 import { Route as ForesattOkonomiRouteImport } from './routes/foresatt.okonomi'
 import { Route as ForesattMeldingerRouteImport } from './routes/foresatt.meldinger'
 import { Route as ElevVarslingerRouteImport } from './routes/elev.varslinger'
+import { Route as ElevSmsRouteImport } from './routes/elev.sms'
 import { Route as ElevOvingskjoringRouteImport } from './routes/elev.ovingskjoring'
 import { Route as ElevOpplaeringskortRouteImport } from './routes/elev.opplaeringskort'
 import { Route as ElevMeldingerRouteImport } from './routes/elev.meldinger'
@@ -135,6 +136,11 @@ const ForesattMeldingerRoute = ForesattMeldingerRouteImport.update({
 const ElevVarslingerRoute = ElevVarslingerRouteImport.update({
   id: '/elev/varslinger',
   path: '/elev/varslinger',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ElevSmsRoute = ElevSmsRouteImport.update({
+  id: '/elev/sms',
+  path: '/elev/sms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ElevOvingskjoringRoute = ElevOvingskjoringRouteImport.update({
@@ -253,6 +259,7 @@ export interface FileRoutesByFullPath {
   '/elev/meldinger': typeof ElevMeldingerRoute
   '/elev/opplaeringskort': typeof ElevOpplaeringskortRoute
   '/elev/ovingskjoring': typeof ElevOvingskjoringRoute
+  '/elev/sms': typeof ElevSmsRoute
   '/elev/varslinger': typeof ElevVarslingerRoute
   '/foresatt/meldinger': typeof ForesattMeldingerRoute
   '/foresatt/okonomi': typeof ForesattOkonomiRoute
@@ -292,6 +299,7 @@ export interface FileRoutesByTo {
   '/elev/meldinger': typeof ElevMeldingerRoute
   '/elev/opplaeringskort': typeof ElevOpplaeringskortRoute
   '/elev/ovingskjoring': typeof ElevOvingskjoringRoute
+  '/elev/sms': typeof ElevSmsRoute
   '/elev/varslinger': typeof ElevVarslingerRoute
   '/foresatt/meldinger': typeof ForesattMeldingerRoute
   '/foresatt/okonomi': typeof ForesattOkonomiRoute
@@ -332,6 +340,7 @@ export interface FileRoutesById {
   '/elev/meldinger': typeof ElevMeldingerRoute
   '/elev/opplaeringskort': typeof ElevOpplaeringskortRoute
   '/elev/ovingskjoring': typeof ElevOvingskjoringRoute
+  '/elev/sms': typeof ElevSmsRoute
   '/elev/varslinger': typeof ElevVarslingerRoute
   '/foresatt/meldinger': typeof ForesattMeldingerRoute
   '/foresatt/okonomi': typeof ForesattOkonomiRoute
@@ -373,6 +382,7 @@ export interface FileRouteTypes {
     | '/elev/meldinger'
     | '/elev/opplaeringskort'
     | '/elev/ovingskjoring'
+    | '/elev/sms'
     | '/elev/varslinger'
     | '/foresatt/meldinger'
     | '/foresatt/okonomi'
@@ -412,6 +422,7 @@ export interface FileRouteTypes {
     | '/elev/meldinger'
     | '/elev/opplaeringskort'
     | '/elev/ovingskjoring'
+    | '/elev/sms'
     | '/elev/varslinger'
     | '/foresatt/meldinger'
     | '/foresatt/okonomi'
@@ -451,6 +462,7 @@ export interface FileRouteTypes {
     | '/elev/meldinger'
     | '/elev/opplaeringskort'
     | '/elev/ovingskjoring'
+    | '/elev/sms'
     | '/elev/varslinger'
     | '/foresatt/meldinger'
     | '/foresatt/okonomi'
@@ -491,6 +503,7 @@ export interface RootRouteChildren {
   ElevMeldingerRoute: typeof ElevMeldingerRoute
   ElevOpplaeringskortRoute: typeof ElevOpplaeringskortRoute
   ElevOvingskjoringRoute: typeof ElevOvingskjoringRoute
+  ElevSmsRoute: typeof ElevSmsRoute
   ElevVarslingerRoute: typeof ElevVarslingerRoute
   ForesattMeldingerRoute: typeof ForesattMeldingerRoute
   ForesattOkonomiRoute: typeof ForesattOkonomiRoute
@@ -635,6 +648,13 @@ declare module '@tanstack/react-router' {
       path: '/elev/varslinger'
       fullPath: '/elev/varslinger'
       preLoaderRoute: typeof ElevVarslingerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/elev/sms': {
+      id: '/elev/sms'
+      path: '/elev/sms'
+      fullPath: '/elev/sms'
+      preLoaderRoute: typeof ElevSmsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/elev/ovingskjoring': {
@@ -816,6 +836,7 @@ const rootRouteChildren: RootRouteChildren = {
   ElevMeldingerRoute: ElevMeldingerRoute,
   ElevOpplaeringskortRoute: ElevOpplaeringskortRoute,
   ElevOvingskjoringRoute: ElevOvingskjoringRoute,
+  ElevSmsRoute: ElevSmsRoute,
   ElevVarslingerRoute: ElevVarslingerRoute,
   ForesattMeldingerRoute: ForesattMeldingerRoute,
   ForesattOkonomiRoute: ForesattOkonomiRoute,
