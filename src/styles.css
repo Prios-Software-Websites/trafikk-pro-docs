@@ -47,7 +47,7 @@
 :root {
   --radius: 0.5rem;
 
-  /* Background / surfaces — calm slate */
+  /* Background /. surfaces — calm slate */
   --background: oklch(0.984 0.005 247);
   --foreground: oklch(0.18 0.04 260);
   --card: oklch(1 0 0);
@@ -56,7 +56,7 @@
   --popover-foreground: oklch(0.18 0.04 260);
 
   /* Brand — trustworthy blue (#2563eb-ish) */
-  --primary: oklch(0.55 0.20 261);
+  --primary: oklch(0.55 0.2 261);
   --primary-foreground: oklch(0.99 0 0);
 
   --secondary: oklch(0.96 0.008 250);
@@ -78,17 +78,17 @@
 
   --border: oklch(0.92 0.012 255);
   --input: oklch(0.92 0.012 255);
-  --ring: oklch(0.55 0.20 261);
+  --ring: oklch(0.55 0.2 261);
 
   /* Sidebar — light, professional */
   --sidebar: oklch(1 0 0);
   --sidebar-foreground: oklch(0.3 0.03 260);
-  --sidebar-primary: oklch(0.55 0.20 261);
+  --sidebar-primary: oklch(0.55 0.2 261);
   --sidebar-primary-foreground: oklch(0.99 0 0);
   --sidebar-accent: oklch(0.96 0.012 250);
   --sidebar-accent-foreground: oklch(0.22 0.04 260);
   --sidebar-border: oklch(0.93 0.01 255);
-  --sidebar-ring: oklch(0.55 0.20 261);
+  --sidebar-ring: oklch(0.55 0.2 261);
 }
 
 .dark {
