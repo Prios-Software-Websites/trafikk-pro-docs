@@ -27,6 +27,7 @@ const navByRole: Record<Role, Item[]> = {
     { to: "/admin/okonomi", key: "nav_economy", icon: <Wallet className="size-4" /> },
     { to: "/admin/meldinger", key: "nav_messages", icon: <MessageSquare className="size-4" /> },
     { to: "/admin/varslinger", key: "nav_notifications", icon: <BellRing className="size-4" /> },
+    { to: "/admin/sms", key: "nav_sms", icon: <Smartphone className="size-4" /> },
     { to: "/admin/revisjonslogg", key: "nav_audit", icon: <ScrollText className="size-4" /> },
     { to: "/admin/innstillinger", key: "nav_settings", icon: <Settings className="size-4" /> },
   ],
