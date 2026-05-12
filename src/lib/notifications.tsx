@@ -193,6 +193,8 @@ type CreateInput = {
   trainingElement?: string;
   scheduledInMin?: number;
   forceFail?: boolean;
+  channelOverride?: Channel;
+  senderName?: string;
 };
 
 type Ctx = {
