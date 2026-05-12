@@ -1,0 +1,8 @@
+node_modules
+.git
+.wrangler
+.tanstack
+.lovable
+docs
+wrangler.jsonc
+netlify.toml

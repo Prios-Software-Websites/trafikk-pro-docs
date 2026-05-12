@@ -1,17 +1,20 @@
 {
-  "buildCommand": "bun run build",
-  "installCommand": "bun install",
-  "framework": null,
-  "outputDirectory": ".output/public",
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "outputDirectory": "dist/client",
   "functions": {
-    "api/**/*.func": {
-      "runtime": "nodejs20.x"
+    "api/index.js": {
+      "includeFiles": "dist/server/**"
     }
   },
   "routes": [
     {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/.output/server/index.mjs"
+      "dest": "/api"
     }
   ]
 }
