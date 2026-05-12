@@ -17,15 +17,18 @@ import { Route as ElevIndexRouteImport } from './routes/elev.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as LarerVeiledningRouteImport } from './routes/larer.veiledning'
 import { Route as LarerVarslingerRouteImport } from './routes/larer.varslinger'
+import { Route as LarerSmsRouteImport } from './routes/larer.sms'
 import { Route as LarerMeldingerRouteImport } from './routes/larer.meldinger'
 import { Route as LarerKalenderRouteImport } from './routes/larer.kalender'
 import { Route as LarerEleverRouteImport } from './routes/larer.elever'
 import { Route as LarerAttesteringRouteImport } from './routes/larer.attestering'
 import { Route as ForesattVarslingerRouteImport } from './routes/foresatt.varslinger'
+import { Route as ForesattSmsRouteImport } from './routes/foresatt.sms'
 import { Route as ForesattOvingskjoringRouteImport } from './routes/foresatt.ovingskjoring'
 import { Route as ForesattOkonomiRouteImport } from './routes/foresatt.okonomi'
 import { Route as ForesattMeldingerRouteImport } from './routes/foresatt.meldinger'
 import { Route as ElevVarslingerRouteImport } from './routes/elev.varslinger'
+import { Route as ElevSmsRouteImport } from './routes/elev.sms'
 import { Route as ElevOvingskjoringRouteImport } from './routes/elev.ovingskjoring'
 import { Route as ElevOpplaeringskortRouteImport } from './routes/elev.opplaeringskort'
 import { Route as ElevMeldingerRouteImport } from './routes/elev.meldinger'
@@ -33,6 +36,7 @@ import { Route as ElevBookRouteImport } from './routes/elev.book'
 import { Route as ElevBetalingRouteImport } from './routes/elev.betaling'
 import { Route as AdminVarslingerRouteImport } from './routes/admin.varslinger'
 import { Route as AdminTilsynsvisningRouteImport } from './routes/admin.tilsynsvisning'
+import { Route as AdminSmsRouteImport } from './routes/admin.sms'
 import { Route as AdminRevisjonsloggRouteImport } from './routes/admin.revisjonslogg'
 import { Route as AdminRapporteringRouteImport } from './routes/admin.rapportering'
 import { Route as AdminOpplaeringskortRouteImport } from './routes/admin.opplaeringskort'
@@ -85,6 +89,11 @@ const LarerVarslingerRoute = LarerVarslingerRouteImport.update({
   path: '/larer/varslinger',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LarerSmsRoute = LarerSmsRouteImport.update({
+  id: '/larer/sms',
+  path: '/larer/sms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LarerMeldingerRoute = LarerMeldingerRouteImport.update({
   id: '/larer/meldinger',
   path: '/larer/meldinger',
@@ -110,6 +119,11 @@ const ForesattVarslingerRoute = ForesattVarslingerRouteImport.update({
   path: '/foresatt/varslinger',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForesattSmsRoute = ForesattSmsRouteImport.update({
+  id: '/foresatt/sms',
+  path: '/foresatt/sms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ForesattOvingskjoringRoute = ForesattOvingskjoringRouteImport.update({
   id: '/foresatt/ovingskjoring',
   path: '/foresatt/ovingskjoring',
@@ -128,6 +142,11 @@ const ForesattMeldingerRoute = ForesattMeldingerRouteImport.update({
 const ElevVarslingerRoute = ElevVarslingerRouteImport.update({
   id: '/elev/varslinger',
   path: '/elev/varslinger',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ElevSmsRoute = ElevSmsRouteImport.update({
+  id: '/elev/sms',
+  path: '/elev/sms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ElevOvingskjoringRoute = ElevOvingskjoringRouteImport.update({
@@ -163,6 +182,11 @@ const AdminVarslingerRoute = AdminVarslingerRouteImport.update({
 const AdminTilsynsvisningRoute = AdminTilsynsvisningRouteImport.update({
   id: '/admin/tilsynsvisning',
   path: '/admin/tilsynsvisning',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSmsRoute = AdminSmsRouteImport.update({
+  id: '/admin/sms',
+  path: '/admin/sms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRevisjonsloggRoute = AdminRevisjonsloggRouteImport.update({
@@ -233,6 +257,7 @@ export interface FileRoutesByFullPath {
   '/admin/opplaeringskort': typeof AdminOpplaeringskortRouteWithChildren
   '/admin/rapportering': typeof AdminRapporteringRoute
   '/admin/revisjonslogg': typeof AdminRevisjonsloggRoute
+  '/admin/sms': typeof AdminSmsRoute
   '/admin/tilsynsvisning': typeof AdminTilsynsvisningRoute
   '/admin/varslinger': typeof AdminVarslingerRoute
   '/elev/betaling': typeof ElevBetalingRoute
@@ -240,15 +265,18 @@ export interface FileRoutesByFullPath {
   '/elev/meldinger': typeof ElevMeldingerRoute
   '/elev/opplaeringskort': typeof ElevOpplaeringskortRoute
   '/elev/ovingskjoring': typeof ElevOvingskjoringRoute
+  '/elev/sms': typeof ElevSmsRoute
   '/elev/varslinger': typeof ElevVarslingerRoute
   '/foresatt/meldinger': typeof ForesattMeldingerRoute
   '/foresatt/okonomi': typeof ForesattOkonomiRoute
   '/foresatt/ovingskjoring': typeof ForesattOvingskjoringRoute
+  '/foresatt/sms': typeof ForesattSmsRoute
   '/foresatt/varslinger': typeof ForesattVarslingerRoute
   '/larer/attestering': typeof LarerAttesteringRoute
   '/larer/elever': typeof LarerEleverRoute
   '/larer/kalender': typeof LarerKalenderRoute
   '/larer/meldinger': typeof LarerMeldingerRoute
+  '/larer/sms': typeof LarerSmsRoute
   '/larer/varslinger': typeof LarerVarslingerRoute
   '/larer/veiledning': typeof LarerVeiledningRoute
   '/admin/': typeof AdminIndexRoute
@@ -270,6 +298,7 @@ export interface FileRoutesByTo {
   '/admin/opplaeringskort': typeof AdminOpplaeringskortRouteWithChildren
   '/admin/rapportering': typeof AdminRapporteringRoute
   '/admin/revisjonslogg': typeof AdminRevisjonsloggRoute
+  '/admin/sms': typeof AdminSmsRoute
   '/admin/tilsynsvisning': typeof AdminTilsynsvisningRoute
   '/admin/varslinger': typeof AdminVarslingerRoute
   '/elev/betaling': typeof ElevBetalingRoute
@@ -277,15 +306,18 @@ export interface FileRoutesByTo {
   '/elev/meldinger': typeof ElevMeldingerRoute
   '/elev/opplaeringskort': typeof ElevOpplaeringskortRoute
   '/elev/ovingskjoring': typeof ElevOvingskjoringRoute
+  '/elev/sms': typeof ElevSmsRoute
   '/elev/varslinger': typeof ElevVarslingerRoute
   '/foresatt/meldinger': typeof ForesattMeldingerRoute
   '/foresatt/okonomi': typeof ForesattOkonomiRoute
   '/foresatt/ovingskjoring': typeof ForesattOvingskjoringRoute
+  '/foresatt/sms': typeof ForesattSmsRoute
   '/foresatt/varslinger': typeof ForesattVarslingerRoute
   '/larer/attestering': typeof LarerAttesteringRoute
   '/larer/elever': typeof LarerEleverRoute
   '/larer/kalender': typeof LarerKalenderRoute
   '/larer/meldinger': typeof LarerMeldingerRoute
+  '/larer/sms': typeof LarerSmsRoute
   '/larer/varslinger': typeof LarerVarslingerRoute
   '/larer/veiledning': typeof LarerVeiledningRoute
   '/admin': typeof AdminIndexRoute
@@ -308,6 +340,7 @@ export interface FileRoutesById {
   '/admin/opplaeringskort': typeof AdminOpplaeringskortRouteWithChildren
   '/admin/rapportering': typeof AdminRapporteringRoute
   '/admin/revisjonslogg': typeof AdminRevisjonsloggRoute
+  '/admin/sms': typeof AdminSmsRoute
   '/admin/tilsynsvisning': typeof AdminTilsynsvisningRoute
   '/admin/varslinger': typeof AdminVarslingerRoute
   '/elev/betaling': typeof ElevBetalingRoute
@@ -315,15 +348,18 @@ export interface FileRoutesById {
   '/elev/meldinger': typeof ElevMeldingerRoute
   '/elev/opplaeringskort': typeof ElevOpplaeringskortRoute
   '/elev/ovingskjoring': typeof ElevOvingskjoringRoute
+  '/elev/sms': typeof ElevSmsRoute
   '/elev/varslinger': typeof ElevVarslingerRoute
   '/foresatt/meldinger': typeof ForesattMeldingerRoute
   '/foresatt/okonomi': typeof ForesattOkonomiRoute
   '/foresatt/ovingskjoring': typeof ForesattOvingskjoringRoute
+  '/foresatt/sms': typeof ForesattSmsRoute
   '/foresatt/varslinger': typeof ForesattVarslingerRoute
   '/larer/attestering': typeof LarerAttesteringRoute
   '/larer/elever': typeof LarerEleverRoute
   '/larer/kalender': typeof LarerKalenderRoute
   '/larer/meldinger': typeof LarerMeldingerRoute
+  '/larer/sms': typeof LarerSmsRoute
   '/larer/varslinger': typeof LarerVarslingerRoute
   '/larer/veiledning': typeof LarerVeiledningRoute
   '/admin/': typeof AdminIndexRoute
@@ -347,6 +383,7 @@ export interface FileRouteTypes {
     | '/admin/opplaeringskort'
     | '/admin/rapportering'
     | '/admin/revisjonslogg'
+    | '/admin/sms'
     | '/admin/tilsynsvisning'
     | '/admin/varslinger'
     | '/elev/betaling'
@@ -354,15 +391,18 @@ export interface FileRouteTypes {
     | '/elev/meldinger'
     | '/elev/opplaeringskort'
     | '/elev/ovingskjoring'
+    | '/elev/sms'
     | '/elev/varslinger'
     | '/foresatt/meldinger'
     | '/foresatt/okonomi'
     | '/foresatt/ovingskjoring'
+    | '/foresatt/sms'
     | '/foresatt/varslinger'
     | '/larer/attestering'
     | '/larer/elever'
     | '/larer/kalender'
     | '/larer/meldinger'
+    | '/larer/sms'
     | '/larer/varslinger'
     | '/larer/veiledning'
     | '/admin/'
@@ -384,6 +424,7 @@ export interface FileRouteTypes {
     | '/admin/opplaeringskort'
     | '/admin/rapportering'
     | '/admin/revisjonslogg'
+    | '/admin/sms'
     | '/admin/tilsynsvisning'
     | '/admin/varslinger'
     | '/elev/betaling'
@@ -391,15 +432,18 @@ export interface FileRouteTypes {
     | '/elev/meldinger'
     | '/elev/opplaeringskort'
     | '/elev/ovingskjoring'
+    | '/elev/sms'
     | '/elev/varslinger'
     | '/foresatt/meldinger'
     | '/foresatt/okonomi'
     | '/foresatt/ovingskjoring'
+    | '/foresatt/sms'
     | '/foresatt/varslinger'
     | '/larer/attestering'
     | '/larer/elever'
     | '/larer/kalender'
     | '/larer/meldinger'
+    | '/larer/sms'
     | '/larer/varslinger'
     | '/larer/veiledning'
     | '/admin'
@@ -421,6 +465,7 @@ export interface FileRouteTypes {
     | '/admin/opplaeringskort'
     | '/admin/rapportering'
     | '/admin/revisjonslogg'
+    | '/admin/sms'
     | '/admin/tilsynsvisning'
     | '/admin/varslinger'
     | '/elev/betaling'
@@ -428,15 +473,18 @@ export interface FileRouteTypes {
     | '/elev/meldinger'
     | '/elev/opplaeringskort'
     | '/elev/ovingskjoring'
+    | '/elev/sms'
     | '/elev/varslinger'
     | '/foresatt/meldinger'
     | '/foresatt/okonomi'
     | '/foresatt/ovingskjoring'
+    | '/foresatt/sms'
     | '/foresatt/varslinger'
     | '/larer/attestering'
     | '/larer/elever'
     | '/larer/kalender'
     | '/larer/meldinger'
+    | '/larer/sms'
     | '/larer/varslinger'
     | '/larer/veiledning'
     | '/admin/'
@@ -459,6 +507,7 @@ export interface RootRouteChildren {
   AdminOpplaeringskortRoute: typeof AdminOpplaeringskortRouteWithChildren
   AdminRapporteringRoute: typeof AdminRapporteringRoute
   AdminRevisjonsloggRoute: typeof AdminRevisjonsloggRoute
+  AdminSmsRoute: typeof AdminSmsRoute
   AdminTilsynsvisningRoute: typeof AdminTilsynsvisningRoute
   AdminVarslingerRoute: typeof AdminVarslingerRoute
   ElevBetalingRoute: typeof ElevBetalingRoute
@@ -466,15 +515,18 @@ export interface RootRouteChildren {
   ElevMeldingerRoute: typeof ElevMeldingerRoute
   ElevOpplaeringskortRoute: typeof ElevOpplaeringskortRoute
   ElevOvingskjoringRoute: typeof ElevOvingskjoringRoute
+  ElevSmsRoute: typeof ElevSmsRoute
   ElevVarslingerRoute: typeof ElevVarslingerRoute
   ForesattMeldingerRoute: typeof ForesattMeldingerRoute
   ForesattOkonomiRoute: typeof ForesattOkonomiRoute
   ForesattOvingskjoringRoute: typeof ForesattOvingskjoringRoute
+  ForesattSmsRoute: typeof ForesattSmsRoute
   ForesattVarslingerRoute: typeof ForesattVarslingerRoute
   LarerAttesteringRoute: typeof LarerAttesteringRoute
   LarerEleverRoute: typeof LarerEleverRoute
   LarerKalenderRoute: typeof LarerKalenderRoute
   LarerMeldingerRoute: typeof LarerMeldingerRoute
+  LarerSmsRoute: typeof LarerSmsRoute
   LarerVarslingerRoute: typeof LarerVarslingerRoute
   LarerVeiledningRoute: typeof LarerVeiledningRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -541,6 +593,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LarerVarslingerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/larer/sms': {
+      id: '/larer/sms'
+      path: '/larer/sms'
+      fullPath: '/larer/sms'
+      preLoaderRoute: typeof LarerSmsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/larer/meldinger': {
       id: '/larer/meldinger'
       path: '/larer/meldinger'
@@ -576,6 +635,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForesattVarslingerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/foresatt/sms': {
+      id: '/foresatt/sms'
+      path: '/foresatt/sms'
+      fullPath: '/foresatt/sms'
+      preLoaderRoute: typeof ForesattSmsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/foresatt/ovingskjoring': {
       id: '/foresatt/ovingskjoring'
       path: '/foresatt/ovingskjoring'
@@ -602,6 +668,13 @@ declare module '@tanstack/react-router' {
       path: '/elev/varslinger'
       fullPath: '/elev/varslinger'
       preLoaderRoute: typeof ElevVarslingerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/elev/sms': {
+      id: '/elev/sms'
+      path: '/elev/sms'
+      fullPath: '/elev/sms'
+      preLoaderRoute: typeof ElevSmsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/elev/ovingskjoring': {
@@ -651,6 +724,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/tilsynsvisning'
       fullPath: '/admin/tilsynsvisning'
       preLoaderRoute: typeof AdminTilsynsvisningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/sms': {
+      id: '/admin/sms'
+      path: '/admin/sms'
+      fullPath: '/admin/sms'
+      preLoaderRoute: typeof AdminSmsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/revisjonslogg': {
@@ -768,6 +848,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminOpplaeringskortRoute: AdminOpplaeringskortRouteWithChildren,
   AdminRapporteringRoute: AdminRapporteringRoute,
   AdminRevisjonsloggRoute: AdminRevisjonsloggRoute,
+  AdminSmsRoute: AdminSmsRoute,
   AdminTilsynsvisningRoute: AdminTilsynsvisningRoute,
   AdminVarslingerRoute: AdminVarslingerRoute,
   ElevBetalingRoute: ElevBetalingRoute,
@@ -775,15 +856,18 @@ const rootRouteChildren: RootRouteChildren = {
   ElevMeldingerRoute: ElevMeldingerRoute,
   ElevOpplaeringskortRoute: ElevOpplaeringskortRoute,
   ElevOvingskjoringRoute: ElevOvingskjoringRoute,
+  ElevSmsRoute: ElevSmsRoute,
   ElevVarslingerRoute: ElevVarslingerRoute,
   ForesattMeldingerRoute: ForesattMeldingerRoute,
   ForesattOkonomiRoute: ForesattOkonomiRoute,
   ForesattOvingskjoringRoute: ForesattOvingskjoringRoute,
+  ForesattSmsRoute: ForesattSmsRoute,
   ForesattVarslingerRoute: ForesattVarslingerRoute,
   LarerAttesteringRoute: LarerAttesteringRoute,
   LarerEleverRoute: LarerEleverRoute,
   LarerKalenderRoute: LarerKalenderRoute,
   LarerMeldingerRoute: LarerMeldingerRoute,
+  LarerSmsRoute: LarerSmsRoute,
   LarerVarslingerRoute: LarerVarslingerRoute,
   LarerVeiledningRoute: LarerVeiledningRoute,
   AdminIndexRoute: AdminIndexRoute,
@@ -794,13 +878,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

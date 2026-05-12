@@ -31,6 +31,7 @@ const nb: Dict = {
   nav_economy: "Økonomi",
   nav_messages: "Meldinger",
   nav_notifications: "Varslinger",
+  nav_sms: "Send SMS",
   nav_settings: "Innstillinger",
   nav_audit: "Revisjonslogg",
   // Nav teacher
@@ -157,6 +158,7 @@ const en: Dict = {
   nav_economy: "Finance",
   nav_messages: "Messages",
   nav_notifications: "Notifications",
+  nav_sms: "Send SMS",
   nav_settings: "Settings",
   nav_audit: "Audit log",
   nav_my_day: "My day",

@@ -22,7 +22,8 @@ export type TriggerEvent =
   | "step_blocked"
   | "teacher_approval_expiring"
   | "backup_signature_required"
-  | "tsk_report_failed";
+  | "tsk_report_failed"
+  | "custom_sms";
 
 export const TRIGGER_LABELS: Record<TriggerEvent, string> = {
   booking_confirmed: "Bookingbekreftelse",
@@ -40,6 +41,7 @@ export const TRIGGER_LABELS: Record<TriggerEvent, string> = {
   teacher_approval_expiring: "Lærergodkjenning utløper snart",
   backup_signature_required: "Månedlig backup må signeres",
   tsk_report_failed: "TSK-rapportering feilet — manuell oppfølging",
+  custom_sms: "Egendefinert melding (SMS)",
 };
 
 export type NotificationItem = {
@@ -85,6 +87,7 @@ const TEMPLATES: Partial<Record<TriggerEvent, string>> = {
   teacher_approval_expiring: "Din godkjenning for klasse {klasse} utløper {dato}. Forny snarest.",
   backup_signature_required: "Månedlig backup må signeres av faglig leder.",
   tsk_report_failed: "Rapportering til TSK feilet og krever manuell oppfølging.",
+  custom_sms: "{tekst}",
 };
 
 export function renderTemplate(t: TriggerEvent, vars: Record<string, string | number | undefined>): string {
@@ -190,6 +193,8 @@ type CreateInput = {
   trainingElement?: string;
   scheduledInMin?: number;
   forceFail?: boolean;
+  channelOverride?: Channel;
+  senderName?: string;
 };
 
 type Ctx = {
@@ -237,10 +242,12 @@ export function NotificationsProvider({ children }: { children: ReactNode }) {
     const info = recipientInfo(input.recipientId);
     if (!info) return;
     const pref = prefs[info.role];
-    let channel: Channel = pref.preferred;
-    if (channel === "app" && !pref.app) channel = pref.sms ? "sms" : pref.email ? "email" : "app";
-    if (channel === "sms" && !pref.sms) channel = pref.app ? "app" : pref.email ? "email" : "sms";
-    if (channel === "email" && !pref.email) channel = pref.app ? "app" : pref.sms ? "sms" : "email";
+    let channel: Channel = input.channelOverride ?? pref.preferred;
+    if (!input.channelOverride) {
+      if (channel === "app" && !pref.app) channel = pref.sms ? "sms" : pref.email ? "email" : "app";
+      if (channel === "sms" && !pref.sms) channel = pref.app ? "app" : pref.email ? "email" : "sms";
+      if (channel === "email" && !pref.email) channel = pref.app ? "app" : pref.sms ? "sms" : "email";
+    }
 
     const now = Date.now();
     const scheduledAt = new Date(now + (input.scheduledInMin ?? 0) * 60000).toISOString();
