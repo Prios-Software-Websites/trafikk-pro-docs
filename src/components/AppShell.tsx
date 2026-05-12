@@ -5,12 +5,13 @@ import { Button } from "@/components/ui/button";
 import {
   LayoutDashboard, Users, GraduationCap, Calendar, IdCard, ClipboardList, Eye,
   Send, Wallet, MessageSquare, Settings, ScrollText, LogOut, BookOpenCheck,
-  CarFront, MapPinned, CreditCard, ChevronDown, ShieldCheck,
+  CarFront, MapPinned, CreditCard, ChevronDown, ShieldCheck, BellRing,
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { NotificationCenter } from "@/components/NotificationCenter";
 
 type Item = { to: string; key: string; icon: ReactNode };
 
