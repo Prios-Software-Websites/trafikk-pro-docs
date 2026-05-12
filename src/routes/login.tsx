@@ -43,21 +43,27 @@ function Login() {
         <div className="flex items-center gap-2">
           <div className="size-8 rounded-md bg-primary grid place-items-center"><CarFront className="size-4 text-primary-foreground" /></div>
           <div className="leading-tight">
-            <div className="font-bold tracking-tight">TrafikkDok. <span className="text-primary">Pro</span></div>
-            <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Prototype · ikke reell innsending</div>
+            <div className="font-bold tracking-tight text-lg">Kjøreflyt</div>
+            <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Et samarbeid mellom Prios og TA-Lappen</div>
           </div>
         </div>
-        <Button variant="outline" size="sm" onClick={() => setLang(lang === "nb" ? "en" : "nb")}>
-          {lang === "nb" ? "English" : "Norsk Bokmål"}
-        </Button>
+        <div className="flex items-center gap-4">
+          <div className="hidden sm:flex items-center gap-3 pr-3 border-r border-border">
+            <img src={priosLogo} alt="Prios" className="h-6 w-auto object-contain" />
+            <img src={taLappenLogo} alt="TA-Lappen" className="h-6 w-auto object-contain" />
+          </div>
+          <Button variant="outline" size="sm" onClick={() => setLang(lang === "nb" ? "en" : "nb")}>
+            {lang === "nb" ? "English" : "Norsk Bokmål"}
+          </Button>
+        </div>
       </header>
 
       <div className="flex-1 grid lg:grid-cols-2">
         <div className="hidden lg:flex flex-col justify-center px-12 bg-gradient-to-br from-primary/95 to-primary text-primary-foreground">
           <div className="max-w-md">
-            <div className="text-[11px] font-bold uppercase tracking-widest opacity-80 mb-4">Compliance-først for norske trafikkskoler</div>
+            <div className="text-[11px] font-bold uppercase tracking-widest opacity-80 mb-4">Et samarbeid mellom Prios og TA-Lappen</div>
             <h1 className="text-4xl font-bold tracking-tight leading-tight text-balance">
-              Dokumentasjon, attestering og tilsyn — i ett system.
+              Administrasjons- og bookingsløsning for trafikkskoler.
             </h1>
             <p className="mt-4 text-primary-foreground/85 leading-relaxed">
               Bygget på logikken i Forskrift om trafikkopplæring. Hindrer vanlige avvik gjennom validering, rollebasert tilgang og umiddelbar tilsynsvisning.
