@@ -5,6 +5,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
 import { getStudent, packages } from "@/lib/mock-data";
+import { useNotifications } from "@/lib/notifications";
+import { useAuth } from "@/lib/auth";
 import { toast } from "sonner";
 import { CreditCard } from "lucide-react";
 
@@ -15,6 +17,13 @@ export const Route = createFileRoute("/elev/betaling")({
 function Pay() {
   const { t } = useI18n();
   const s = getStudent("s-001")!;
+  const { user } = useAuth();
+  const { create } = useNotifications();
+  const pay = (p: typeof packages[number], method: string) => {
+    create({ recipientId: user!.id, trigger: "payment_confirmed", vars: { beløp: p.price }, studentId: user!.id });
+    if (s.parentId) create({ recipientId: s.parentId, trigger: "payment_confirmed", vars: { beløp: p.price }, studentId: user!.id });
+    toast.success(`Mock ${method}-betaling: ${p.name}`);
+  };
   return (
     <>
       <PageHeader title={t("nav_payment")} description="Saldo, pakker og betaling. Mock-flyt — ingen reelle transaksjoner." />
@@ -30,9 +39,9 @@ function Pay() {
             <div className="text-xs text-muted-foreground mt-1">{p.lessons} timer</div>
             <div className="text-2xl font-bold mt-3">{p.price.toLocaleString("nb-NO")} kr</div>
             <div className="mt-4 flex gap-2">
-              <Button onClick={() => toast.success(`Mock Vipps-betaling: ${p.name}`)}><CreditCard /> Vipps</Button>
-              <Button variant="outline" onClick={() => toast("Mock kort-betaling")}>Kort</Button>
-              <Button variant="outline" onClick={() => toast("Mock faktura sendt")}>Faktura</Button>
+              <Button onClick={() => pay(p, "Vipps")}><CreditCard /> Vipps</Button>
+              <Button variant="outline" onClick={() => pay(p, "kort")}>Kort</Button>
+              <Button variant="outline" onClick={() => pay(p, "faktura")}>Faktura</Button>
             </div>
           </Card>
         ))}

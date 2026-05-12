@@ -5,12 +5,13 @@ import { Button } from "@/components/ui/button";
 import {
   LayoutDashboard, Users, GraduationCap, Calendar, IdCard, ClipboardList, Eye,
   Send, Wallet, MessageSquare, Settings, ScrollText, LogOut, BookOpenCheck,
-  CarFront, MapPinned, CreditCard, ChevronDown, ShieldCheck,
+  CarFront, MapPinned, CreditCard, ChevronDown, ShieldCheck, BellRing,
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { NotificationCenter } from "@/components/NotificationCenter";
 
 type Item = { to: string; key: string; icon: ReactNode };
 
@@ -25,6 +26,7 @@ const navByRole: Record<Role, Item[]> = {
     { to: "/admin/rapportering", key: "nav_reporting", icon: <Send className="size-4" /> },
     { to: "/admin/okonomi", key: "nav_economy", icon: <Wallet className="size-4" /> },
     { to: "/admin/meldinger", key: "nav_messages", icon: <MessageSquare className="size-4" /> },
+    { to: "/admin/varslinger", key: "nav_notifications", icon: <BellRing className="size-4" /> },
     { to: "/admin/revisjonslogg", key: "nav_audit", icon: <ScrollText className="size-4" /> },
     { to: "/admin/innstillinger", key: "nav_settings", icon: <Settings className="size-4" /> },
   ],
@@ -35,6 +37,7 @@ const navByRole: Record<Role, Item[]> = {
     { to: "/larer/attestering", key: "nav_attest", icon: <BookOpenCheck className="size-4" /> },
     { to: "/larer/veiledning", key: "nav_guidance", icon: <ClipboardList className="size-4" /> },
     { to: "/larer/meldinger", key: "nav_messages", icon: <MessageSquare className="size-4" /> },
+    { to: "/larer/varslinger", key: "nav_notifications", icon: <BellRing className="size-4" /> },
   ],
   student: [
     { to: "/elev", key: "nav_progress", icon: <LayoutDashboard className="size-4" /> },
@@ -43,12 +46,14 @@ const navByRole: Record<Role, Item[]> = {
     { to: "/elev/ovingskjoring", key: "nav_practice", icon: <MapPinned className="size-4" /> },
     { to: "/elev/betaling", key: "nav_payment", icon: <CreditCard className="size-4" /> },
     { to: "/elev/meldinger", key: "nav_messages", icon: <MessageSquare className="size-4" /> },
+    { to: "/elev/varslinger", key: "nav_notifications", icon: <BellRing className="size-4" /> },
   ],
   parent: [
     { to: "/foresatt", key: "nav_overview", icon: <LayoutDashboard className="size-4" /> },
     { to: "/foresatt/okonomi", key: "nav_economy", icon: <Wallet className="size-4" /> },
     { to: "/foresatt/ovingskjoring", key: "nav_practice", icon: <MapPinned className="size-4" /> },
     { to: "/foresatt/meldinger", key: "nav_messages", icon: <MessageSquare className="size-4" /> },
+    { to: "/foresatt/varslinger", key: "nav_notifications", icon: <BellRing className="size-4" /> },
   ],
 };
 
@@ -161,6 +166,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <span className="hidden md:inline text-[11px] font-medium px-2 py-0.5 rounded bg-success/10 text-success uppercase tracking-wide">
               System OK
             </span>
+            <NotificationCenter />
             <Button size="sm" variant="outline" onClick={() => setLang(lang === "nb" ? "en" : "nb")}>
               {lang === "nb" ? "EN" : "NB"}
             </Button>
