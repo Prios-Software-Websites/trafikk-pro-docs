@@ -11,7 +11,23 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LarerIndexRouteImport } from './routes/larer.index'
+import { Route as ForesattIndexRouteImport } from './routes/foresatt.index'
+import { Route as ElevIndexRouteImport } from './routes/elev.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as LarerVeiledningRouteImport } from './routes/larer.veiledning'
+import { Route as LarerMeldingerRouteImport } from './routes/larer.meldinger'
+import { Route as LarerKalenderRouteImport } from './routes/larer.kalender'
+import { Route as LarerEleverRouteImport } from './routes/larer.elever'
+import { Route as LarerAttesteringRouteImport } from './routes/larer.attestering'
+import { Route as ForesattOvingskjoringRouteImport } from './routes/foresatt.ovingskjoring'
+import { Route as ForesattOkonomiRouteImport } from './routes/foresatt.okonomi'
+import { Route as ForesattMeldingerRouteImport } from './routes/foresatt.meldinger'
+import { Route as ElevOvingskjoringRouteImport } from './routes/elev.ovingskjoring'
+import { Route as ElevOpplaeringskortRouteImport } from './routes/elev.opplaeringskort'
+import { Route as ElevMeldingerRouteImport } from './routes/elev.meldinger'
+import { Route as ElevBookRouteImport } from './routes/elev.book'
+import { Route as ElevBetalingRouteImport } from './routes/elev.betaling'
 import { Route as AdminTilsynsvisningRouteImport } from './routes/admin.tilsynsvisning'
 import { Route as AdminRevisjonsloggRouteImport } from './routes/admin.revisjonslogg'
 import { Route as AdminRapporteringRouteImport } from './routes/admin.rapportering'
@@ -35,9 +51,89 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LarerIndexRoute = LarerIndexRouteImport.update({
+  id: '/larer/',
+  path: '/larer/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForesattIndexRoute = ForesattIndexRouteImport.update({
+  id: '/foresatt/',
+  path: '/foresatt/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ElevIndexRoute = ElevIndexRouteImport.update({
+  id: '/elev/',
+  path: '/elev/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LarerVeiledningRoute = LarerVeiledningRouteImport.update({
+  id: '/larer/veiledning',
+  path: '/larer/veiledning',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LarerMeldingerRoute = LarerMeldingerRouteImport.update({
+  id: '/larer/meldinger',
+  path: '/larer/meldinger',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LarerKalenderRoute = LarerKalenderRouteImport.update({
+  id: '/larer/kalender',
+  path: '/larer/kalender',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LarerEleverRoute = LarerEleverRouteImport.update({
+  id: '/larer/elever',
+  path: '/larer/elever',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LarerAttesteringRoute = LarerAttesteringRouteImport.update({
+  id: '/larer/attestering',
+  path: '/larer/attestering',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForesattOvingskjoringRoute = ForesattOvingskjoringRouteImport.update({
+  id: '/foresatt/ovingskjoring',
+  path: '/foresatt/ovingskjoring',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForesattOkonomiRoute = ForesattOkonomiRouteImport.update({
+  id: '/foresatt/okonomi',
+  path: '/foresatt/okonomi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForesattMeldingerRoute = ForesattMeldingerRouteImport.update({
+  id: '/foresatt/meldinger',
+  path: '/foresatt/meldinger',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ElevOvingskjoringRoute = ElevOvingskjoringRouteImport.update({
+  id: '/elev/ovingskjoring',
+  path: '/elev/ovingskjoring',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ElevOpplaeringskortRoute = ElevOpplaeringskortRouteImport.update({
+  id: '/elev/opplaeringskort',
+  path: '/elev/opplaeringskort',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ElevMeldingerRoute = ElevMeldingerRouteImport.update({
+  id: '/elev/meldinger',
+  path: '/elev/meldinger',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ElevBookRoute = ElevBookRouteImport.update({
+  id: '/elev/book',
+  path: '/elev/book',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ElevBetalingRoute = ElevBetalingRouteImport.update({
+  id: '/elev/betaling',
+  path: '/elev/betaling',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminTilsynsvisningRoute = AdminTilsynsvisningRouteImport.update({
@@ -114,7 +210,23 @@ export interface FileRoutesByFullPath {
   '/admin/rapportering': typeof AdminRapporteringRoute
   '/admin/revisjonslogg': typeof AdminRevisjonsloggRoute
   '/admin/tilsynsvisning': typeof AdminTilsynsvisningRoute
+  '/elev/betaling': typeof ElevBetalingRoute
+  '/elev/book': typeof ElevBookRoute
+  '/elev/meldinger': typeof ElevMeldingerRoute
+  '/elev/opplaeringskort': typeof ElevOpplaeringskortRoute
+  '/elev/ovingskjoring': typeof ElevOvingskjoringRoute
+  '/foresatt/meldinger': typeof ForesattMeldingerRoute
+  '/foresatt/okonomi': typeof ForesattOkonomiRoute
+  '/foresatt/ovingskjoring': typeof ForesattOvingskjoringRoute
+  '/larer/attestering': typeof LarerAttesteringRoute
+  '/larer/elever': typeof LarerEleverRoute
+  '/larer/kalender': typeof LarerKalenderRoute
+  '/larer/meldinger': typeof LarerMeldingerRoute
+  '/larer/veiledning': typeof LarerVeiledningRoute
   '/admin/': typeof AdminIndexRoute
+  '/elev/': typeof ElevIndexRoute
+  '/foresatt/': typeof ForesattIndexRoute
+  '/larer/': typeof LarerIndexRoute
   '/admin/elever/$id': typeof AdminEleverIdRoute
   '/admin/opplaeringskort/$id': typeof AdminOpplaeringskortIdRoute
 }
@@ -131,7 +243,23 @@ export interface FileRoutesByTo {
   '/admin/rapportering': typeof AdminRapporteringRoute
   '/admin/revisjonslogg': typeof AdminRevisjonsloggRoute
   '/admin/tilsynsvisning': typeof AdminTilsynsvisningRoute
+  '/elev/betaling': typeof ElevBetalingRoute
+  '/elev/book': typeof ElevBookRoute
+  '/elev/meldinger': typeof ElevMeldingerRoute
+  '/elev/opplaeringskort': typeof ElevOpplaeringskortRoute
+  '/elev/ovingskjoring': typeof ElevOvingskjoringRoute
+  '/foresatt/meldinger': typeof ForesattMeldingerRoute
+  '/foresatt/okonomi': typeof ForesattOkonomiRoute
+  '/foresatt/ovingskjoring': typeof ForesattOvingskjoringRoute
+  '/larer/attestering': typeof LarerAttesteringRoute
+  '/larer/elever': typeof LarerEleverRoute
+  '/larer/kalender': typeof LarerKalenderRoute
+  '/larer/meldinger': typeof LarerMeldingerRoute
+  '/larer/veiledning': typeof LarerVeiledningRoute
   '/admin': typeof AdminIndexRoute
+  '/elev': typeof ElevIndexRoute
+  '/foresatt': typeof ForesattIndexRoute
+  '/larer': typeof LarerIndexRoute
   '/admin/elever/$id': typeof AdminEleverIdRoute
   '/admin/opplaeringskort/$id': typeof AdminOpplaeringskortIdRoute
 }
@@ -149,7 +277,23 @@ export interface FileRoutesById {
   '/admin/rapportering': typeof AdminRapporteringRoute
   '/admin/revisjonslogg': typeof AdminRevisjonsloggRoute
   '/admin/tilsynsvisning': typeof AdminTilsynsvisningRoute
+  '/elev/betaling': typeof ElevBetalingRoute
+  '/elev/book': typeof ElevBookRoute
+  '/elev/meldinger': typeof ElevMeldingerRoute
+  '/elev/opplaeringskort': typeof ElevOpplaeringskortRoute
+  '/elev/ovingskjoring': typeof ElevOvingskjoringRoute
+  '/foresatt/meldinger': typeof ForesattMeldingerRoute
+  '/foresatt/okonomi': typeof ForesattOkonomiRoute
+  '/foresatt/ovingskjoring': typeof ForesattOvingskjoringRoute
+  '/larer/attestering': typeof LarerAttesteringRoute
+  '/larer/elever': typeof LarerEleverRoute
+  '/larer/kalender': typeof LarerKalenderRoute
+  '/larer/meldinger': typeof LarerMeldingerRoute
+  '/larer/veiledning': typeof LarerVeiledningRoute
   '/admin/': typeof AdminIndexRoute
+  '/elev/': typeof ElevIndexRoute
+  '/foresatt/': typeof ForesattIndexRoute
+  '/larer/': typeof LarerIndexRoute
   '/admin/elever/$id': typeof AdminEleverIdRoute
   '/admin/opplaeringskort/$id': typeof AdminOpplaeringskortIdRoute
 }
@@ -168,7 +312,23 @@ export interface FileRouteTypes {
     | '/admin/rapportering'
     | '/admin/revisjonslogg'
     | '/admin/tilsynsvisning'
+    | '/elev/betaling'
+    | '/elev/book'
+    | '/elev/meldinger'
+    | '/elev/opplaeringskort'
+    | '/elev/ovingskjoring'
+    | '/foresatt/meldinger'
+    | '/foresatt/okonomi'
+    | '/foresatt/ovingskjoring'
+    | '/larer/attestering'
+    | '/larer/elever'
+    | '/larer/kalender'
+    | '/larer/meldinger'
+    | '/larer/veiledning'
     | '/admin/'
+    | '/elev/'
+    | '/foresatt/'
+    | '/larer/'
     | '/admin/elever/$id'
     | '/admin/opplaeringskort/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -185,7 +345,23 @@ export interface FileRouteTypes {
     | '/admin/rapportering'
     | '/admin/revisjonslogg'
     | '/admin/tilsynsvisning'
+    | '/elev/betaling'
+    | '/elev/book'
+    | '/elev/meldinger'
+    | '/elev/opplaeringskort'
+    | '/elev/ovingskjoring'
+    | '/foresatt/meldinger'
+    | '/foresatt/okonomi'
+    | '/foresatt/ovingskjoring'
+    | '/larer/attestering'
+    | '/larer/elever'
+    | '/larer/kalender'
+    | '/larer/meldinger'
+    | '/larer/veiledning'
     | '/admin'
+    | '/elev'
+    | '/foresatt'
+    | '/larer'
     | '/admin/elever/$id'
     | '/admin/opplaeringskort/$id'
   id:
@@ -202,7 +378,23 @@ export interface FileRouteTypes {
     | '/admin/rapportering'
     | '/admin/revisjonslogg'
     | '/admin/tilsynsvisning'
+    | '/elev/betaling'
+    | '/elev/book'
+    | '/elev/meldinger'
+    | '/elev/opplaeringskort'
+    | '/elev/ovingskjoring'
+    | '/foresatt/meldinger'
+    | '/foresatt/okonomi'
+    | '/foresatt/ovingskjoring'
+    | '/larer/attestering'
+    | '/larer/elever'
+    | '/larer/kalender'
+    | '/larer/meldinger'
+    | '/larer/veiledning'
     | '/admin/'
+    | '/elev/'
+    | '/foresatt/'
+    | '/larer/'
     | '/admin/elever/$id'
     | '/admin/opplaeringskort/$id'
   fileRoutesById: FileRoutesById
@@ -220,7 +412,23 @@ export interface RootRouteChildren {
   AdminRapporteringRoute: typeof AdminRapporteringRoute
   AdminRevisjonsloggRoute: typeof AdminRevisjonsloggRoute
   AdminTilsynsvisningRoute: typeof AdminTilsynsvisningRoute
+  ElevBetalingRoute: typeof ElevBetalingRoute
+  ElevBookRoute: typeof ElevBookRoute
+  ElevMeldingerRoute: typeof ElevMeldingerRoute
+  ElevOpplaeringskortRoute: typeof ElevOpplaeringskortRoute
+  ElevOvingskjoringRoute: typeof ElevOvingskjoringRoute
+  ForesattMeldingerRoute: typeof ForesattMeldingerRoute
+  ForesattOkonomiRoute: typeof ForesattOkonomiRoute
+  ForesattOvingskjoringRoute: typeof ForesattOvingskjoringRoute
+  LarerAttesteringRoute: typeof LarerAttesteringRoute
+  LarerEleverRoute: typeof LarerEleverRoute
+  LarerKalenderRoute: typeof LarerKalenderRoute
+  LarerMeldingerRoute: typeof LarerMeldingerRoute
+  LarerVeiledningRoute: typeof LarerVeiledningRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  ElevIndexRoute: typeof ElevIndexRoute
+  ForesattIndexRoute: typeof ForesattIndexRoute
+  LarerIndexRoute: typeof LarerIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -239,11 +447,123 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/larer/': {
+      id: '/larer/'
+      path: '/larer'
+      fullPath: '/larer/'
+      preLoaderRoute: typeof LarerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/foresatt/': {
+      id: '/foresatt/'
+      path: '/foresatt'
+      fullPath: '/foresatt/'
+      preLoaderRoute: typeof ForesattIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/elev/': {
+      id: '/elev/'
+      path: '/elev'
+      fullPath: '/elev/'
+      preLoaderRoute: typeof ElevIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/': {
       id: '/admin/'
       path: '/admin'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/larer/veiledning': {
+      id: '/larer/veiledning'
+      path: '/larer/veiledning'
+      fullPath: '/larer/veiledning'
+      preLoaderRoute: typeof LarerVeiledningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/larer/meldinger': {
+      id: '/larer/meldinger'
+      path: '/larer/meldinger'
+      fullPath: '/larer/meldinger'
+      preLoaderRoute: typeof LarerMeldingerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/larer/kalender': {
+      id: '/larer/kalender'
+      path: '/larer/kalender'
+      fullPath: '/larer/kalender'
+      preLoaderRoute: typeof LarerKalenderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/larer/elever': {
+      id: '/larer/elever'
+      path: '/larer/elever'
+      fullPath: '/larer/elever'
+      preLoaderRoute: typeof LarerEleverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/larer/attestering': {
+      id: '/larer/attestering'
+      path: '/larer/attestering'
+      fullPath: '/larer/attestering'
+      preLoaderRoute: typeof LarerAttesteringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/foresatt/ovingskjoring': {
+      id: '/foresatt/ovingskjoring'
+      path: '/foresatt/ovingskjoring'
+      fullPath: '/foresatt/ovingskjoring'
+      preLoaderRoute: typeof ForesattOvingskjoringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/foresatt/okonomi': {
+      id: '/foresatt/okonomi'
+      path: '/foresatt/okonomi'
+      fullPath: '/foresatt/okonomi'
+      preLoaderRoute: typeof ForesattOkonomiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/foresatt/meldinger': {
+      id: '/foresatt/meldinger'
+      path: '/foresatt/meldinger'
+      fullPath: '/foresatt/meldinger'
+      preLoaderRoute: typeof ForesattMeldingerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/elev/ovingskjoring': {
+      id: '/elev/ovingskjoring'
+      path: '/elev/ovingskjoring'
+      fullPath: '/elev/ovingskjoring'
+      preLoaderRoute: typeof ElevOvingskjoringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/elev/opplaeringskort': {
+      id: '/elev/opplaeringskort'
+      path: '/elev/opplaeringskort'
+      fullPath: '/elev/opplaeringskort'
+      preLoaderRoute: typeof ElevOpplaeringskortRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/elev/meldinger': {
+      id: '/elev/meldinger'
+      path: '/elev/meldinger'
+      fullPath: '/elev/meldinger'
+      preLoaderRoute: typeof ElevMeldingerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/elev/book': {
+      id: '/elev/book'
+      path: '/elev/book'
+      fullPath: '/elev/book'
+      preLoaderRoute: typeof ElevBookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/elev/betaling': {
+      id: '/elev/betaling'
+      path: '/elev/betaling'
+      fullPath: '/elev/betaling'
+      preLoaderRoute: typeof ElevBetalingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/tilsynsvisning': {
@@ -369,7 +689,23 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRapporteringRoute: AdminRapporteringRoute,
   AdminRevisjonsloggRoute: AdminRevisjonsloggRoute,
   AdminTilsynsvisningRoute: AdminTilsynsvisningRoute,
+  ElevBetalingRoute: ElevBetalingRoute,
+  ElevBookRoute: ElevBookRoute,
+  ElevMeldingerRoute: ElevMeldingerRoute,
+  ElevOpplaeringskortRoute: ElevOpplaeringskortRoute,
+  ElevOvingskjoringRoute: ElevOvingskjoringRoute,
+  ForesattMeldingerRoute: ForesattMeldingerRoute,
+  ForesattOkonomiRoute: ForesattOkonomiRoute,
+  ForesattOvingskjoringRoute: ForesattOvingskjoringRoute,
+  LarerAttesteringRoute: LarerAttesteringRoute,
+  LarerEleverRoute: LarerEleverRoute,
+  LarerKalenderRoute: LarerKalenderRoute,
+  LarerMeldingerRoute: LarerMeldingerRoute,
+  LarerVeiledningRoute: LarerVeiledningRoute,
   AdminIndexRoute: AdminIndexRoute,
+  ElevIndexRoute: ElevIndexRoute,
+  ForesattIndexRoute: ForesattIndexRoute,
+  LarerIndexRoute: LarerIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
