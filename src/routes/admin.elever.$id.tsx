@@ -9,7 +9,7 @@ import { TrainingCard } from "@/components/TrainingCard";
 import { ArrowLeft, IdCard, MapPinned } from "lucide-react";
 
 export const Route = createFileRoute("/admin/elever/$id")({
-  head: () => ({ meta: [{ title: "Elev — TrafikkDok. Pro" }] }),
+  head: () => ({ meta: [{ title: "Elev — Kjøreflyt" }] }),
   component: () => <RoleGate allow={["admin"]}><Detail /></RoleGate>,
   notFoundComponent: () => <div className="p-8">Elev ikke funnet</div>,
   loader: ({ params }) => {

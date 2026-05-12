@@ -6,7 +6,7 @@ import { useI18n } from "@/lib/i18n";
 import { auditLog } from "@/lib/mock-data";
 
 export const Route = createFileRoute("/admin/revisjonslogg")({
-  head: () => ({ meta: [{ title: "Revisjonslogg — TrafikkDok. Pro" }] }),
+  head: () => ({ meta: [{ title: "Revisjonslogg — Kjøreflyt" }] }),
   component: () => <RoleGate allow={["admin"]}><Audit /></RoleGate>,
 });
 

@@ -7,7 +7,7 @@ import { teachers } from "@/lib/mock-data";
 import { ShieldAlert, ShieldCheck, ShieldX } from "lucide-react";
 
 export const Route = createFileRoute("/admin/laerere")({
-  head: () => ({ meta: [{ title: "Lærere — TrafikkDok. Pro" }] }),
+  head: () => ({ meta: [{ title: "Lærere — Kjøreflyt" }] }),
   component: () => <RoleGate allow={["admin"]}><Teachers /></RoleGate>,
 });
 

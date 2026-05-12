@@ -56,10 +56,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "TrafikkDokumentasjon Pro" },
+      { title: "Kjøreflyt" },
       { name: "description", content: "Compliance-først plattform for norske trafikkskoler — dokumentasjon, attestering, rapportering og tilsyn." },
-      { property: "og:title", content: "TrafikkDokumentasjon Pro" },
-      { name: "twitter:title", content: "TrafikkDokumentasjon Pro" },
+      { property: "og:title", content: "Kjøreflyt" },
+      { name: "twitter:title", content: "Kjøreflyt" },
       { property: "og:description", content: "Compliance-først plattform for norske trafikkskoler — dokumentasjon, attestering, rapportering og tilsyn." },
       { name: "twitter:description", content: "Compliance-først plattform for norske trafikkskoler — dokumentasjon, attestering, rapportering og tilsyn." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7a3f1a05-8331-4690-a324-07bcf8cdd34d/id-preview-3f1af065--2da8c7b2-a375-4192-8f22-e8d7536d5502.lovable.app-1778575287268.png" },

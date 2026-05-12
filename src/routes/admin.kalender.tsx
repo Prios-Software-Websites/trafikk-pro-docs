@@ -6,7 +6,7 @@ import { useI18n } from "@/lib/i18n";
 import { lessons, getStudent, getTeacher } from "@/lib/mock-data";
 
 export const Route = createFileRoute("/admin/kalender")({
-  head: () => ({ meta: [{ title: "Kalender — TrafikkDok. Pro" }] }),
+  head: () => ({ meta: [{ title: "Kalender — Kjøreflyt" }] }),
   component: () => <RoleGate allow={["admin", "teacher"]}><Cal /></RoleGate>,
 });
 

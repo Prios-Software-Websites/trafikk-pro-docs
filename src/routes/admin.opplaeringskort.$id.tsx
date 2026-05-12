@@ -10,7 +10,7 @@ import { ArrowLeft, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/opplaeringskort/$id")({
-  head: () => ({ meta: [{ title: "Opplæringskort — TrafikkDok. Pro" }] }),
+  head: () => ({ meta: [{ title: "Opplæringskort — Kjøreflyt" }] }),
   component: () => <RoleGate allow={["admin"]}><Detail /></RoleGate>,
   loader: ({ params }) => { if (!getStudent(params.id)) throw notFound(); return null; },
 });

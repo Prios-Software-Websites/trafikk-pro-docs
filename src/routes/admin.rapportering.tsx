@@ -17,7 +17,7 @@ const tone = (s: ReportItem["status"]) =>
   s === "Feilet" ? "destructive" : "muted";
 
 export const Route = createFileRoute("/admin/rapportering")({
-  head: () => ({ meta: [{ title: "Rapportering — TrafikkDok. Pro" }] }),
+  head: () => ({ meta: [{ title: "Rapportering — Kjøreflyt" }] }),
   component: () => <RoleGate allow={["admin"]}><Reporting /></RoleGate>,
 });
 

@@ -9,7 +9,7 @@ import { TrainingCard } from "@/components/TrainingCard";
 import { Eye } from "lucide-react";
 
 export const Route = createFileRoute("/admin/opplaeringskort")({
-  head: () => ({ meta: [{ title: "Opplæringskort — TrafikkDok. Pro" }] }),
+  head: () => ({ meta: [{ title: "Opplæringskort — Kjøreflyt" }] }),
   component: () => <RoleGate allow={["admin"]}><Cards /></RoleGate>,
 });
 

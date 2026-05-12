@@ -12,7 +12,7 @@ import { Download, FileText, Eye, ShieldCheck, Search } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/elever")({
-  head: () => ({ meta: [{ title: "Elevfortegnelse — TrafikkDok. Pro" }] }),
+  head: () => ({ meta: [{ title: "Elevfortegnelse — Kjøreflyt" }] }),
   component: () => <RoleGate allow={["admin"]}><Elever /></RoleGate>,
 });
 

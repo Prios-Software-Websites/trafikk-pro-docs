@@ -7,7 +7,7 @@ import { CarFront, ShieldCheck, Lock, Smartphone } from "lucide-react";
 import { useState } from "react";
 
 export const Route = createFileRoute("/login")({
-  head: () => ({ meta: [{ title: "Logg inn — TrafikkDokumentasjon Pro" }] }),
+  head: () => ({ meta: [{ title: "Logg inn — Kjøreflyt" }] }),
   component: Login,
 });
 

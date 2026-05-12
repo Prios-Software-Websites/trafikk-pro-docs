@@ -11,7 +11,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/innstillinger")({
-  head: () => ({ meta: [{ title: "Innstillinger — TrafikkDok. Pro" }] }),
+  head: () => ({ meta: [{ title: "Innstillinger — Kjøreflyt" }] }),
   component: () => <RoleGate allow={["admin"]}><Settings /></RoleGate>,
 });
 

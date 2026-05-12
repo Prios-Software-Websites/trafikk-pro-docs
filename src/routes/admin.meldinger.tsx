@@ -7,7 +7,7 @@ import { messages, getStudent, getTeacher } from "@/lib/mock-data";
 import { useAuth } from "@/lib/auth";
 
 export const Route = createFileRoute("/admin/meldinger")({
-  head: () => ({ meta: [{ title: "Meldinger — TrafikkDok. Pro" }] }),
+  head: () => ({ meta: [{ title: "Meldinger — Kjøreflyt" }] }),
   component: () => <RoleGate allow={["admin", "teacher", "student", "parent"]}><Msgs /></RoleGate>,
 });
 
