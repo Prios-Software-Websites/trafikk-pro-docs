@@ -39,6 +39,7 @@ const navByRole: Record<Role, Item[]> = {
     { to: "/larer/veiledning", key: "nav_guidance", icon: <ClipboardList className="size-4" /> },
     { to: "/larer/meldinger", key: "nav_messages", icon: <MessageSquare className="size-4" /> },
     { to: "/larer/varslinger", key: "nav_notifications", icon: <BellRing className="size-4" /> },
+    { to: "/larer/sms", key: "nav_sms", icon: <Smartphone className="size-4" /> },
   ],
   student: [
     { to: "/elev", key: "nav_progress", icon: <LayoutDashboard className="size-4" /> },
