@@ -1,0 +1,370 @@
+// TrafikkDokumentasjon Pro — datamodell
+// Kilde: Forskrift om trafikkopplæring og førerprøve mv.
+// Verktøy: https://dbdiagram.io  (lim inn hele filen)
+
+Project trafikk_dokumentasjon_pro {
+  database_type: 'PostgreSQL'
+  Note: 'Compliance-first kjøreskoleplattform. Multi-tenant, RLS-klar.'
+}
+
+// =========================================================
+// ENUMS
+// =========================================================
+
+Enum app_role {
+  admin           // Faglig leder / daglig leder
+  teacher         // Trafikklærer
+  student         // Elev
+  parent          // Foresatt / ledsager
+  auditor         // Tilsynsmyndighet (read-only)
+}
+
+Enum license_class {
+  B
+  BE
+  A
+  A2
+  C
+  CE
+}
+
+Enum student_status { aktiv arkivert pause }
+
+Enum doc_status { komplett mangler utloper }
+
+Enum teacher_status { gyldig utloper_snart utlopt mangler_dokumentasjon }
+
+Enum step_status { locked available completed needs_assessment needs_reporting }
+
+Enum lesson_type { ordinaer obligatorisk veiledningstime }
+
+Enum signature_method { sikker_pin mock_bankid mock_vipps }
+
+Enum report_status {
+  klar_for_innsending
+  sendt
+  mottatt
+  feilet
+  krever_manuell_kontroll
+  ikke_rapporteringspliktig
+}
+
+Enum payment_method { vipps kort faktura kontant }
+Enum payment_status { initiert fullfort feilet refundert }
+
+// =========================================================
+// 1. TENANCY & IDENTITET
+// =========================================================
+
+Table tenants {
+  id uuid [pk]
+  org_no varchar(9) [unique, note: 'Organisasjonsnummer']
+  name varchar(120)
+  approval_no varchar(60) [note: 'Godkjenningsnummer fra Statens vegvesen']
+  created_at timestamptz
+}
+
+Table users {
+  id uuid [pk, note: 'auth.users.id i Supabase']
+  tenant_id uuid [ref: > tenants.id]
+  email varchar(255) [unique]
+  full_name varchar(160)
+  phone varchar(30)
+  bankid_verified boolean
+  created_at timestamptz
+}
+
+Table user_roles {
+  id uuid [pk]
+  user_id uuid [ref: > users.id]
+  tenant_id uuid [ref: > tenants.id]
+  role app_role
+  Indexes { (user_id, tenant_id, role) [unique] }
+  Note: 'Roller MÅ ligge i egen tabell (aldri på users) for å hindre privilege escalation.'
+}
+
+// =========================================================
+// 2. PERSONER
+// =========================================================
+
+Table students {
+  id uuid [pk]
+  tenant_id uuid [ref: > tenants.id]
+  user_id uuid [ref: > users.id, note: 'NULL hvis elev ikke har innlogging']
+  student_no varchar(20) [note: 'Sekvensielt nr per tenant — elevfortegnelse']
+  full_name varchar(160)
+  ssn_encrypted bytea [note: 'Fødselsnummer kryptert at-rest']
+  address text
+  start_date date
+  end_date date
+  license_class license_class
+  status student_status
+  responsible_teacher_id uuid [ref: > teachers.id]
+  doc_status doc_status
+  balance_nok integer [note: 'Saldo i øre']
+  created_at timestamptz
+  updated_at timestamptz
+  Indexes { (tenant_id, student_no) [unique] }
+}
+
+Table parents {
+  id uuid [pk]
+  tenant_id uuid [ref: > tenants.id]
+  user_id uuid [ref: > users.id]
+  full_name varchar(160)
+}
+
+Table student_parents {
+  student_id uuid [ref: > students.id]
+  parent_id uuid [ref: > parents.id]
+  relation varchar(40)
+  Indexes { (student_id, parent_id) [pk] }
+}
+
+Table teachers {
+  id uuid [pk]
+  tenant_id uuid [ref: > tenants.id]
+  user_id uuid [ref: > users.id]
+  full_name varchar(160)
+  email varchar(255)
+  status teacher_status
+  approval_valid_to date
+  first_aid boolean
+  created_at timestamptz
+}
+
+Table teacher_qualifications {
+  id uuid [pk]
+  teacher_id uuid [ref: > teachers.id]
+  license_class license_class
+  approved_from date
+  approved_to date
+  document_url text [note: 'Lenke til godkjenningsbevis i storage']
+  Indexes { (teacher_id, license_class) [unique] }
+}
+
+// =========================================================
+// 3. OPPLÆRING
+// =========================================================
+
+Table training_cards {
+  id uuid [pk]
+  tenant_id uuid [ref: > tenants.id]
+  student_id uuid [ref: > students.id, unique]
+  license_class license_class
+  opened_at timestamptz
+  closed_at timestamptz
+}
+
+Table trinn {
+  id uuid [pk]
+  training_card_id uuid [ref: > training_cards.id]
+  number smallint [note: '1..4']
+  status step_status
+  unlocked_at timestamptz
+  completed_at timestamptz
+  Indexes { (training_card_id, number) [unique] }
+}
+
+Table trinn_elements {
+  id uuid [pk]
+  trinn_id uuid [ref: > trinn.id]
+  code varchar(20) [note: 'F.eks 2.7, 3.7, sikkerhetskurs_bane']
+  title varchar(200)
+  is_mandatory boolean
+  is_reportable boolean
+  status step_status
+  completed_at timestamptz
+  attested_by_lesson_id uuid [ref: > lessons.id]
+}
+
+Table lessons {
+  id uuid [pk]
+  tenant_id uuid [ref: > tenants.id]
+  student_id uuid [ref: > students.id]
+  teacher_id uuid [ref: > teachers.id]
+  scheduled_at timestamptz
+  duration_min smallint
+  type lesson_type
+  trinn_number smallint
+  attested boolean
+  attested_at timestamptz
+  signature_method signature_method
+  notes text
+  Note: 'CHECK: teacher må ha gyldig teacher_qualifications for student.license_class.'
+}
+
+Table guidance_sessions {
+  id uuid [pk]
+  lesson_id uuid [ref: > lessons.id, unique]
+  protocol_text text
+  signed_by_teacher boolean
+  signed_by_student boolean
+  signed_at timestamptz
+}
+
+Table practice_log {
+  id uuid [pk]
+  student_id uuid [ref: > students.id]
+  date date
+  start_time time
+  end_time time
+  km integer
+  route text
+  weather varchar(40)
+  traffic varchar(40)
+  accompanying_name varchar(160)
+  notes text
+  shared_with_teacher boolean
+}
+
+// =========================================================
+// 4. COMPLIANCE
+// =========================================================
+
+Table reports {
+  id uuid [pk]
+  tenant_id uuid [ref: > tenants.id]
+  student_id uuid [ref: > students.id]
+  teacher_id uuid [ref: > teachers.id]
+  trinn_element_id uuid [ref: > trinn_elements.id]
+  license_class license_class
+  completed_at timestamptz
+  status report_status
+  attempts smallint
+  api_message text
+  sent_at timestamptz
+  acknowledged_at timestamptz
+  Note: 'TSK-rapporteringskø — eksternt system mot Statens vegvesen.'
+}
+
+Table audit_log {
+  id uuid [pk]
+  tenant_id uuid [ref: > tenants.id]
+  ts timestamptz
+  user_id uuid [ref: > users.id]
+  role app_role
+  action varchar(80)
+  object_type varchar(40)
+  object_id uuid
+  summary text
+  reason text
+  signature_method signature_method
+  prev_hash varchar(64) [note: 'Hash-kjede for tamper-evidens']
+  hash varchar(64)
+  Note: 'APPEND-ONLY. Ingen UPDATE/DELETE-policy.'
+}
+
+Table backup_signatures {
+  id uuid [pk]
+  tenant_id uuid [ref: > tenants.id]
+  period_month date
+  signed_by uuid [ref: > users.id]
+  signed_at timestamptz
+  payload_hash varchar(64)
+  signature_method signature_method
+  Indexes { (tenant_id, period_month) [unique] }
+}
+
+Table supervision_exports {
+  id uuid [pk]
+  tenant_id uuid [ref: > tenants.id]
+  generated_by uuid [ref: > users.id]
+  generated_at timestamptz
+  period_from date
+  period_to date
+  file_url text
+  summary jsonb
+}
+
+// =========================================================
+// 5. DRIFT — booking, pakker, betaling
+// =========================================================
+
+Table packages {
+  id uuid [pk]
+  tenant_id uuid [ref: > tenants.id]
+  name varchar(120)
+  price_nok integer
+  lessons_included smallint
+  active boolean
+}
+
+Table student_packages {
+  id uuid [pk]
+  student_id uuid [ref: > students.id]
+  package_id uuid [ref: > packages.id]
+  purchased_at timestamptz
+  remaining_lessons smallint
+}
+
+Table bookings {
+  id uuid [pk]
+  tenant_id uuid [ref: > tenants.id]
+  student_id uuid [ref: > students.id]
+  teacher_id uuid [ref: > teachers.id]
+  lesson_id uuid [ref: > lessons.id]
+  requested_at timestamptz
+  confirmed boolean
+  cancelled_at timestamptz
+  Note: 'Validerer balanse og trinn-tilgang ved opprettelse.'
+}
+
+Table invoices {
+  id uuid [pk]
+  tenant_id uuid [ref: > tenants.id]
+  student_id uuid [ref: > students.id]
+  amount_nok integer
+  due_date date
+  paid boolean
+  issued_at timestamptz
+}
+
+Table payments {
+  id uuid [pk]
+  tenant_id uuid [ref: > tenants.id]
+  invoice_id uuid [ref: > invoices.id]
+  student_id uuid [ref: > students.id]
+  method payment_method
+  status payment_status
+  amount_nok integer
+  external_ref varchar(120)
+  paid_at timestamptz
+}
+
+// =========================================================
+// 6. KOMMUNIKASJON
+// =========================================================
+
+Table message_threads {
+  id uuid [pk]
+  tenant_id uuid [ref: > tenants.id]
+  subject varchar(200)
+  created_at timestamptz
+}
+
+Table thread_participants {
+  thread_id uuid [ref: > message_threads.id]
+  user_id uuid [ref: > users.id]
+  Indexes { (thread_id, user_id) [pk] }
+}
+
+Table messages {
+  id uuid [pk]
+  thread_id uuid [ref: > message_threads.id]
+  from_user_id uuid [ref: > users.id]
+  body text
+  sent_at timestamptz
+  read_at timestamptz
+}
+
+Table attachments {
+  id uuid [pk]
+  tenant_id uuid [ref: > tenants.id]
+  owner_user_id uuid [ref: > users.id]
+  related_object_type varchar(40)
+  related_object_id uuid
+  file_url text
+  mime_type varchar(80)
+  uploaded_at timestamptz
+}

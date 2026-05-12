@@ -1,0 +1,45 @@
+erDiagram
+    TENANTS ||--o{ USERS : has
+    TENANTS ||--o{ STUDENTS : has
+    TENANTS ||--o{ TEACHERS : has
+    TENANTS ||--o{ PACKAGES : offers
+    TENANTS ||--o{ AUDIT_LOG : owns
+    TENANTS ||--o{ BACKUP_SIGNATURES : signs
+    TENANTS ||--o{ SUPERVISION_EXPORTS : exports
+
+    USERS ||--o{ USER_ROLES : assigned
+    USERS ||--o| STUDENTS : "may be"
+    USERS ||--o| TEACHERS : "may be"
+    USERS ||--o| PARENTS : "may be"
+
+    STUDENTS ||--|| TRAINING_CARDS : has
+    STUDENTS }o--o{ PARENTS : "linked via student_parents"
+    STUDENTS ||--o{ LESSONS : attends
+    STUDENTS ||--o{ PRACTICE_LOG : records
+    STUDENTS ||--o{ BOOKINGS : creates
+    STUDENTS ||--o{ INVOICES : owes
+    STUDENTS ||--o{ STUDENT_PACKAGES : owns
+    STUDENTS }o--|| TEACHERS : "responsible teacher"
+
+    TEACHERS ||--o{ TEACHER_QUALIFICATIONS : holds
+    TEACHERS ||--o{ LESSONS : teaches
+
+    TRAINING_CARDS ||--o{ TRINN : contains
+    TRINN ||--o{ TRINN_ELEMENTS : contains
+    TRINN_ELEMENTS }o--o| LESSONS : "attested by"
+    LESSONS ||--o| GUIDANCE_SESSIONS : "may have"
+
+    TRINN_ELEMENTS ||--o{ REPORTS : "reportable as"
+
+    PACKAGES ||--o{ STUDENT_PACKAGES : "purchased as"
+    INVOICES ||--o{ PAYMENTS : "paid by"
+    BOOKINGS }o--|| LESSONS : "results in"
+
+    MESSAGE_THREADS ||--o{ MESSAGES : contains
+    MESSAGE_THREADS ||--o{ THREAD_PARTICIPANTS : has
+    USERS ||--o{ THREAD_PARTICIPANTS : "participates in"
+    USERS ||--o{ MESSAGES : sends
+
+    USERS ||--o{ AUDIT_LOG : "performs action"
+    USERS ||--o{ BACKUP_SIGNATURES : "signs"
+    USERS ||--o{ ATTACHMENTS : uploads

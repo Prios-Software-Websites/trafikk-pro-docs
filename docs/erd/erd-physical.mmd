@@ -1,0 +1,192 @@
+erDiagram
+    TENANTS {
+        uuid id PK
+        varchar9 org_no UK
+        varchar120 name
+        varchar60 approval_no
+        timestamptz created_at
+    }
+    USERS {
+        uuid id PK
+        uuid tenant_id FK
+        varchar255 email UK
+        varchar160 full_name
+        boolean bankid_verified
+    }
+    USER_ROLES {
+        uuid id PK
+        uuid user_id FK
+        uuid tenant_id FK
+        app_role role
+    }
+    STUDENTS {
+        uuid id PK
+        uuid tenant_id FK
+        uuid user_id FK
+        varchar20 student_no "UK per tenant"
+        varchar160 full_name
+        bytea ssn_encrypted
+        license_class license_class
+        student_status status
+        uuid responsible_teacher_id FK
+        doc_status doc_status
+        integer balance_nok
+    }
+    TEACHERS {
+        uuid id PK
+        uuid tenant_id FK
+        uuid user_id FK
+        teacher_status status
+        date approval_valid_to
+        boolean first_aid
+    }
+    TEACHER_QUALIFICATIONS {
+        uuid id PK
+        uuid teacher_id FK
+        license_class license_class
+        date approved_from
+        date approved_to
+        text document_url
+    }
+    TRAINING_CARDS {
+        uuid id PK
+        uuid student_id FK,UK
+        license_class license_class
+        timestamptz opened_at
+        timestamptz closed_at
+    }
+    TRINN {
+        uuid id PK
+        uuid training_card_id FK
+        smallint number "1..4"
+        step_status status
+    }
+    TRINN_ELEMENTS {
+        uuid id PK
+        uuid trinn_id FK
+        varchar20 code
+        varchar200 title
+        boolean is_mandatory
+        boolean is_reportable
+        step_status status
+        uuid attested_by_lesson_id FK
+    }
+    LESSONS {
+        uuid id PK
+        uuid tenant_id FK
+        uuid student_id FK
+        uuid teacher_id FK
+        timestamptz scheduled_at
+        smallint duration_min
+        lesson_type type
+        smallint trinn_number
+        boolean attested
+        signature_method signature_method
+    }
+    GUIDANCE_SESSIONS {
+        uuid id PK
+        uuid lesson_id FK,UK
+        text protocol_text
+        boolean signed_by_teacher
+        boolean signed_by_student
+    }
+    PRACTICE_LOG {
+        uuid id PK
+        uuid student_id FK
+        date date
+        integer km
+        text route
+        boolean shared_with_teacher
+    }
+    REPORTS {
+        uuid id PK
+        uuid tenant_id FK
+        uuid student_id FK
+        uuid teacher_id FK
+        uuid trinn_element_id FK
+        report_status status
+        smallint attempts
+        text api_message
+    }
+    AUDIT_LOG {
+        uuid id PK
+        uuid tenant_id FK
+        timestamptz ts
+        uuid user_id FK
+        app_role role
+        varchar80 action
+        varchar40 object_type
+        uuid object_id
+        varchar64 prev_hash
+        varchar64 hash
+    }
+    BACKUP_SIGNATURES {
+        uuid id PK
+        uuid tenant_id FK
+        date period_month
+        uuid signed_by FK
+        varchar64 payload_hash
+    }
+    SUPERVISION_EXPORTS {
+        uuid id PK
+        uuid tenant_id FK
+        uuid generated_by FK
+        date period_from
+        date period_to
+        text file_url
+        jsonb summary
+    }
+    PACKAGES {
+        uuid id PK
+        uuid tenant_id FK
+        varchar120 name
+        integer price_nok
+        smallint lessons_included
+    }
+    STUDENT_PACKAGES {
+        uuid id PK
+        uuid student_id FK
+        uuid package_id FK
+        smallint remaining_lessons
+    }
+    BOOKINGS {
+        uuid id PK
+        uuid student_id FK
+        uuid teacher_id FK
+        uuid lesson_id FK
+        boolean confirmed
+    }
+    INVOICES {
+        uuid id PK
+        uuid student_id FK
+        integer amount_nok
+        date due_date
+        boolean paid
+    }
+    PAYMENTS {
+        uuid id PK
+        uuid invoice_id FK
+        payment_method method
+        payment_status status
+        integer amount_nok
+        varchar120 external_ref
+    }
+
+    TENANTS ||--o{ USERS : ""
+    TENANTS ||--o{ STUDENTS : ""
+    TENANTS ||--o{ TEACHERS : ""
+    USERS ||--o{ USER_ROLES : ""
+    STUDENTS ||--|| TRAINING_CARDS : ""
+    TRAINING_CARDS ||--o{ TRINN : ""
+    TRINN ||--o{ TRINN_ELEMENTS : ""
+    TEACHERS ||--o{ TEACHER_QUALIFICATIONS : ""
+    STUDENTS ||--o{ LESSONS : ""
+    TEACHERS ||--o{ LESSONS : ""
+    LESSONS ||--o| GUIDANCE_SESSIONS : ""
+    TRINN_ELEMENTS ||--o{ REPORTS : ""
+    STUDENTS ||--o{ PRACTICE_LOG : ""
+    PACKAGES ||--o{ STUDENT_PACKAGES : ""
+    STUDENTS ||--o{ STUDENT_PACKAGES : ""
+    STUDENTS ||--o{ BOOKINGS : ""
+    STUDENTS ||--o{ INVOICES : ""
+    INVOICES ||--o{ PAYMENTS : ""
