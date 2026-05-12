@@ -26,6 +26,7 @@ const navByRole: Record<Role, Item[]> = {
     { to: "/admin/rapportering", key: "nav_reporting", icon: <Send className="size-4" /> },
     { to: "/admin/okonomi", key: "nav_economy", icon: <Wallet className="size-4" /> },
     { to: "/admin/meldinger", key: "nav_messages", icon: <MessageSquare className="size-4" /> },
+    { to: "/admin/varslinger", key: "nav_notifications", icon: <BellRing className="size-4" /> },
     { to: "/admin/revisjonslogg", key: "nav_audit", icon: <ScrollText className="size-4" /> },
     { to: "/admin/innstillinger", key: "nav_settings", icon: <Settings className="size-4" /> },
   ],
@@ -36,6 +37,7 @@ const navByRole: Record<Role, Item[]> = {
     { to: "/larer/attestering", key: "nav_attest", icon: <BookOpenCheck className="size-4" /> },
     { to: "/larer/veiledning", key: "nav_guidance", icon: <ClipboardList className="size-4" /> },
     { to: "/larer/meldinger", key: "nav_messages", icon: <MessageSquare className="size-4" /> },
+    { to: "/larer/varslinger", key: "nav_notifications", icon: <BellRing className="size-4" /> },
   ],
   student: [
     { to: "/elev", key: "nav_progress", icon: <LayoutDashboard className="size-4" /> },
@@ -44,12 +46,14 @@ const navByRole: Record<Role, Item[]> = {
     { to: "/elev/ovingskjoring", key: "nav_practice", icon: <MapPinned className="size-4" /> },
     { to: "/elev/betaling", key: "nav_payment", icon: <CreditCard className="size-4" /> },
     { to: "/elev/meldinger", key: "nav_messages", icon: <MessageSquare className="size-4" /> },
+    { to: "/elev/varslinger", key: "nav_notifications", icon: <BellRing className="size-4" /> },
   ],
   parent: [
     { to: "/foresatt", key: "nav_overview", icon: <LayoutDashboard className="size-4" /> },
     { to: "/foresatt/okonomi", key: "nav_economy", icon: <Wallet className="size-4" /> },
     { to: "/foresatt/ovingskjoring", key: "nav_practice", icon: <MapPinned className="size-4" /> },
     { to: "/foresatt/meldinger", key: "nav_messages", icon: <MessageSquare className="size-4" /> },
+    { to: "/foresatt/varslinger", key: "nav_notifications", icon: <BellRing className="size-4" /> },
   ],
 };
 
