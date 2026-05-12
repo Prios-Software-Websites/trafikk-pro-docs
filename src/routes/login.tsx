@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CarFront, ShieldCheck, Lock, Smartphone } from "lucide-react";
 import { useState } from "react";
+import priosLogo from "@/assets/prios-logo.png";
+import taLappenLogo from "@/assets/talappen-logo.jpg";
 
 export const Route = createFileRoute("/login")({
   head: () => ({ meta: [{ title: "Logg inn — Kjøreflyt" }] }),
