@@ -166,6 +166,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <span className="hidden md:inline text-[11px] font-medium px-2 py-0.5 rounded bg-success/10 text-success uppercase tracking-wide">
               System OK
             </span>
+            <NotificationCenter />
             <Button size="sm" variant="outline" onClick={() => setLang(lang === "nb" ? "en" : "nb")}>
               {lang === "nb" ? "EN" : "NB"}
             </Button>
