@@ -12,7 +12,17 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminTilsynsvisningRouteImport } from './routes/admin.tilsynsvisning'
+import { Route as AdminRevisjonsloggRouteImport } from './routes/admin.revisjonslogg'
+import { Route as AdminRapporteringRouteImport } from './routes/admin.rapportering'
+import { Route as AdminOpplaeringskortRouteImport } from './routes/admin.opplaeringskort'
+import { Route as AdminOkonomiRouteImport } from './routes/admin.okonomi'
+import { Route as AdminMeldingerRouteImport } from './routes/admin.meldinger'
+import { Route as AdminLaerereRouteImport } from './routes/admin.laerere'
+import { Route as AdminKalenderRouteImport } from './routes/admin.kalender'
+import { Route as AdminInnstillingerRouteImport } from './routes/admin.innstillinger'
 import { Route as AdminEleverRouteImport } from './routes/admin.elever'
+import { Route as AdminOpplaeringskortIdRouteImport } from './routes/admin.opplaeringskort.$id'
 import { Route as AdminEleverIdRouteImport } from './routes/admin.elever.$id'
 
 const LoginRoute = LoginRouteImport.update({
@@ -30,10 +40,60 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/admin/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminTilsynsvisningRoute = AdminTilsynsvisningRouteImport.update({
+  id: '/admin/tilsynsvisning',
+  path: '/admin/tilsynsvisning',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRevisjonsloggRoute = AdminRevisjonsloggRouteImport.update({
+  id: '/admin/revisjonslogg',
+  path: '/admin/revisjonslogg',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRapporteringRoute = AdminRapporteringRouteImport.update({
+  id: '/admin/rapportering',
+  path: '/admin/rapportering',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminOpplaeringskortRoute = AdminOpplaeringskortRouteImport.update({
+  id: '/admin/opplaeringskort',
+  path: '/admin/opplaeringskort',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminOkonomiRoute = AdminOkonomiRouteImport.update({
+  id: '/admin/okonomi',
+  path: '/admin/okonomi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminMeldingerRoute = AdminMeldingerRouteImport.update({
+  id: '/admin/meldinger',
+  path: '/admin/meldinger',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLaerereRoute = AdminLaerereRouteImport.update({
+  id: '/admin/laerere',
+  path: '/admin/laerere',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminKalenderRoute = AdminKalenderRouteImport.update({
+  id: '/admin/kalender',
+  path: '/admin/kalender',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminInnstillingerRoute = AdminInnstillingerRouteImport.update({
+  id: '/admin/innstillinger',
+  path: '/admin/innstillinger',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminEleverRoute = AdminEleverRouteImport.update({
   id: '/admin/elever',
   path: '/admin/elever',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AdminOpplaeringskortIdRoute = AdminOpplaeringskortIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminOpplaeringskortRoute,
 } as any)
 const AdminEleverIdRoute = AdminEleverIdRouteImport.update({
   id: '/$id',
@@ -45,42 +105,121 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/admin/elever': typeof AdminEleverRouteWithChildren
+  '/admin/innstillinger': typeof AdminInnstillingerRoute
+  '/admin/kalender': typeof AdminKalenderRoute
+  '/admin/laerere': typeof AdminLaerereRoute
+  '/admin/meldinger': typeof AdminMeldingerRoute
+  '/admin/okonomi': typeof AdminOkonomiRoute
+  '/admin/opplaeringskort': typeof AdminOpplaeringskortRouteWithChildren
+  '/admin/rapportering': typeof AdminRapporteringRoute
+  '/admin/revisjonslogg': typeof AdminRevisjonsloggRoute
+  '/admin/tilsynsvisning': typeof AdminTilsynsvisningRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/elever/$id': typeof AdminEleverIdRoute
+  '/admin/opplaeringskort/$id': typeof AdminOpplaeringskortIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/admin/elever': typeof AdminEleverRouteWithChildren
+  '/admin/innstillinger': typeof AdminInnstillingerRoute
+  '/admin/kalender': typeof AdminKalenderRoute
+  '/admin/laerere': typeof AdminLaerereRoute
+  '/admin/meldinger': typeof AdminMeldingerRoute
+  '/admin/okonomi': typeof AdminOkonomiRoute
+  '/admin/opplaeringskort': typeof AdminOpplaeringskortRouteWithChildren
+  '/admin/rapportering': typeof AdminRapporteringRoute
+  '/admin/revisjonslogg': typeof AdminRevisjonsloggRoute
+  '/admin/tilsynsvisning': typeof AdminTilsynsvisningRoute
   '/admin': typeof AdminIndexRoute
   '/admin/elever/$id': typeof AdminEleverIdRoute
+  '/admin/opplaeringskort/$id': typeof AdminOpplaeringskortIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/admin/elever': typeof AdminEleverRouteWithChildren
+  '/admin/innstillinger': typeof AdminInnstillingerRoute
+  '/admin/kalender': typeof AdminKalenderRoute
+  '/admin/laerere': typeof AdminLaerereRoute
+  '/admin/meldinger': typeof AdminMeldingerRoute
+  '/admin/okonomi': typeof AdminOkonomiRoute
+  '/admin/opplaeringskort': typeof AdminOpplaeringskortRouteWithChildren
+  '/admin/rapportering': typeof AdminRapporteringRoute
+  '/admin/revisjonslogg': typeof AdminRevisjonsloggRoute
+  '/admin/tilsynsvisning': typeof AdminTilsynsvisningRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/elever/$id': typeof AdminEleverIdRoute
+  '/admin/opplaeringskort/$id': typeof AdminOpplaeringskortIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/admin/elever' | '/admin/' | '/admin/elever/$id'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/admin/elever'
+    | '/admin/innstillinger'
+    | '/admin/kalender'
+    | '/admin/laerere'
+    | '/admin/meldinger'
+    | '/admin/okonomi'
+    | '/admin/opplaeringskort'
+    | '/admin/rapportering'
+    | '/admin/revisjonslogg'
+    | '/admin/tilsynsvisning'
+    | '/admin/'
+    | '/admin/elever/$id'
+    | '/admin/opplaeringskort/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/admin/elever' | '/admin' | '/admin/elever/$id'
+  to:
+    | '/'
+    | '/login'
+    | '/admin/elever'
+    | '/admin/innstillinger'
+    | '/admin/kalender'
+    | '/admin/laerere'
+    | '/admin/meldinger'
+    | '/admin/okonomi'
+    | '/admin/opplaeringskort'
+    | '/admin/rapportering'
+    | '/admin/revisjonslogg'
+    | '/admin/tilsynsvisning'
+    | '/admin'
+    | '/admin/elever/$id'
+    | '/admin/opplaeringskort/$id'
   id:
     | '__root__'
     | '/'
     | '/login'
     | '/admin/elever'
+    | '/admin/innstillinger'
+    | '/admin/kalender'
+    | '/admin/laerere'
+    | '/admin/meldinger'
+    | '/admin/okonomi'
+    | '/admin/opplaeringskort'
+    | '/admin/rapportering'
+    | '/admin/revisjonslogg'
+    | '/admin/tilsynsvisning'
     | '/admin/'
     | '/admin/elever/$id'
+    | '/admin/opplaeringskort/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
   AdminEleverRoute: typeof AdminEleverRouteWithChildren
+  AdminInnstillingerRoute: typeof AdminInnstillingerRoute
+  AdminKalenderRoute: typeof AdminKalenderRoute
+  AdminLaerereRoute: typeof AdminLaerereRoute
+  AdminMeldingerRoute: typeof AdminMeldingerRoute
+  AdminOkonomiRoute: typeof AdminOkonomiRoute
+  AdminOpplaeringskortRoute: typeof AdminOpplaeringskortRouteWithChildren
+  AdminRapporteringRoute: typeof AdminRapporteringRoute
+  AdminRevisjonsloggRoute: typeof AdminRevisjonsloggRoute
+  AdminTilsynsvisningRoute: typeof AdminTilsynsvisningRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
@@ -107,12 +246,82 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/tilsynsvisning': {
+      id: '/admin/tilsynsvisning'
+      path: '/admin/tilsynsvisning'
+      fullPath: '/admin/tilsynsvisning'
+      preLoaderRoute: typeof AdminTilsynsvisningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/revisjonslogg': {
+      id: '/admin/revisjonslogg'
+      path: '/admin/revisjonslogg'
+      fullPath: '/admin/revisjonslogg'
+      preLoaderRoute: typeof AdminRevisjonsloggRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/rapportering': {
+      id: '/admin/rapportering'
+      path: '/admin/rapportering'
+      fullPath: '/admin/rapportering'
+      preLoaderRoute: typeof AdminRapporteringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/opplaeringskort': {
+      id: '/admin/opplaeringskort'
+      path: '/admin/opplaeringskort'
+      fullPath: '/admin/opplaeringskort'
+      preLoaderRoute: typeof AdminOpplaeringskortRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/okonomi': {
+      id: '/admin/okonomi'
+      path: '/admin/okonomi'
+      fullPath: '/admin/okonomi'
+      preLoaderRoute: typeof AdminOkonomiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/meldinger': {
+      id: '/admin/meldinger'
+      path: '/admin/meldinger'
+      fullPath: '/admin/meldinger'
+      preLoaderRoute: typeof AdminMeldingerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/laerere': {
+      id: '/admin/laerere'
+      path: '/admin/laerere'
+      fullPath: '/admin/laerere'
+      preLoaderRoute: typeof AdminLaerereRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/kalender': {
+      id: '/admin/kalender'
+      path: '/admin/kalender'
+      fullPath: '/admin/kalender'
+      preLoaderRoute: typeof AdminKalenderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/innstillinger': {
+      id: '/admin/innstillinger'
+      path: '/admin/innstillinger'
+      fullPath: '/admin/innstillinger'
+      preLoaderRoute: typeof AdminInnstillingerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/elever': {
       id: '/admin/elever'
       path: '/admin/elever'
       fullPath: '/admin/elever'
       preLoaderRoute: typeof AdminEleverRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/admin/opplaeringskort/$id': {
+      id: '/admin/opplaeringskort/$id'
+      path: '/$id'
+      fullPath: '/admin/opplaeringskort/$id'
+      preLoaderRoute: typeof AdminOpplaeringskortIdRouteImport
+      parentRoute: typeof AdminOpplaeringskortRoute
     }
     '/admin/elever/$id': {
       id: '/admin/elever/$id'
@@ -136,10 +345,30 @@ const AdminEleverRouteWithChildren = AdminEleverRoute._addFileChildren(
   AdminEleverRouteChildren,
 )
 
+interface AdminOpplaeringskortRouteChildren {
+  AdminOpplaeringskortIdRoute: typeof AdminOpplaeringskortIdRoute
+}
+
+const AdminOpplaeringskortRouteChildren: AdminOpplaeringskortRouteChildren = {
+  AdminOpplaeringskortIdRoute: AdminOpplaeringskortIdRoute,
+}
+
+const AdminOpplaeringskortRouteWithChildren =
+  AdminOpplaeringskortRoute._addFileChildren(AdminOpplaeringskortRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
   AdminEleverRoute: AdminEleverRouteWithChildren,
+  AdminInnstillingerRoute: AdminInnstillingerRoute,
+  AdminKalenderRoute: AdminKalenderRoute,
+  AdminLaerereRoute: AdminLaerereRoute,
+  AdminMeldingerRoute: AdminMeldingerRoute,
+  AdminOkonomiRoute: AdminOkonomiRoute,
+  AdminOpplaeringskortRoute: AdminOpplaeringskortRouteWithChildren,
+  AdminRapporteringRoute: AdminRapporteringRoute,
+  AdminRevisjonsloggRoute: AdminRevisjonsloggRoute,
+  AdminTilsynsvisningRoute: AdminTilsynsvisningRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 export const routeTree = rootRouteImport
