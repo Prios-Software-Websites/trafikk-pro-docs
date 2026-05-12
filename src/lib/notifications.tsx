@@ -242,10 +242,12 @@ export function NotificationsProvider({ children }: { children: ReactNode }) {
     const info = recipientInfo(input.recipientId);
     if (!info) return;
     const pref = prefs[info.role];
-    let channel: Channel = pref.preferred;
-    if (channel === "app" && !pref.app) channel = pref.sms ? "sms" : pref.email ? "email" : "app";
-    if (channel === "sms" && !pref.sms) channel = pref.app ? "app" : pref.email ? "email" : "sms";
-    if (channel === "email" && !pref.email) channel = pref.app ? "app" : pref.sms ? "sms" : "email";
+    let channel: Channel = input.channelOverride ?? pref.preferred;
+    if (!input.channelOverride) {
+      if (channel === "app" && !pref.app) channel = pref.sms ? "sms" : pref.email ? "email" : "app";
+      if (channel === "sms" && !pref.sms) channel = pref.app ? "app" : pref.email ? "email" : "sms";
+      if (channel === "email" && !pref.email) channel = pref.app ? "app" : pref.sms ? "sms" : "email";
+    }
 
     const now = Date.now();
     const scheduledAt = new Date(now + (input.scheduledInMin ?? 0) * 60000).toISOString();
