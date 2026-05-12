@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminEleverRouteImport } from './routes/admin.elever'
+import { Route as AdminEleverIdRouteImport } from './routes/admin.elever.$id'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -22,31 +25,63 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminEleverRoute = AdminEleverRouteImport.update({
+  id: '/admin/elever',
+  path: '/admin/elever',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminEleverIdRoute = AdminEleverIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminEleverRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/admin/elever': typeof AdminEleverRouteWithChildren
+  '/admin/': typeof AdminIndexRoute
+  '/admin/elever/$id': typeof AdminEleverIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/admin/elever': typeof AdminEleverRouteWithChildren
+  '/admin': typeof AdminIndexRoute
+  '/admin/elever/$id': typeof AdminEleverIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/admin/elever': typeof AdminEleverRouteWithChildren
+  '/admin/': typeof AdminIndexRoute
+  '/admin/elever/$id': typeof AdminEleverIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login'
+  fullPaths: '/' | '/login' | '/admin/elever' | '/admin/' | '/admin/elever/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login'
-  id: '__root__' | '/' | '/login'
+  to: '/' | '/login' | '/admin/elever' | '/admin' | '/admin/elever/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/admin/elever'
+    | '/admin/'
+    | '/admin/elever/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
+  AdminEleverRoute: typeof AdminEleverRouteWithChildren
+  AdminIndexRoute: typeof AdminIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +100,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/elever': {
+      id: '/admin/elever'
+      path: '/admin/elever'
+      fullPath: '/admin/elever'
+      preLoaderRoute: typeof AdminEleverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/elever/$id': {
+      id: '/admin/elever/$id'
+      path: '/$id'
+      fullPath: '/admin/elever/$id'
+      preLoaderRoute: typeof AdminEleverIdRouteImport
+      parentRoute: typeof AdminEleverRoute
+    }
   }
 }
+
+interface AdminEleverRouteChildren {
+  AdminEleverIdRoute: typeof AdminEleverIdRoute
+}
+
+const AdminEleverRouteChildren: AdminEleverRouteChildren = {
+  AdminEleverIdRoute: AdminEleverIdRoute,
+}
+
+const AdminEleverRouteWithChildren = AdminEleverRoute._addFileChildren(
+  AdminEleverRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
+  AdminEleverRoute: AdminEleverRouteWithChildren,
+  AdminIndexRoute: AdminIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
