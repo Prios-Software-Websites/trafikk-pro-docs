@@ -22,7 +22,8 @@ export type TriggerEvent =
   | "step_blocked"
   | "teacher_approval_expiring"
   | "backup_signature_required"
-  | "tsk_report_failed";
+  | "tsk_report_failed"
+  | "custom_sms";
 
 export const TRIGGER_LABELS: Record<TriggerEvent, string> = {
   booking_confirmed: "Bookingbekreftelse",
