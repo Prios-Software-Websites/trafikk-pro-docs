@@ -31,6 +31,7 @@ const nb: Dict = {
   nav_economy: "Økonomi",
   nav_messages: "Meldinger",
   nav_notifications: "Varslinger",
+  nav_sms: "Send SMS",
   nav_settings: "Innstillinger",
   nav_audit: "Revisjonslogg",
   // Nav teacher
