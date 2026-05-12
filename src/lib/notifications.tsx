@@ -87,6 +87,7 @@ const TEMPLATES: Partial<Record<TriggerEvent, string>> = {
   teacher_approval_expiring: "Din godkjenning for klasse {klasse} utløper {dato}. Forny snarest.",
   backup_signature_required: "Månedlig backup må signeres av faglig leder.",
   tsk_report_failed: "Rapportering til TSK feilet og krever manuell oppfølging.",
+  custom_sms: "{tekst}",
 };
 
 export function renderTemplate(t: TriggerEvent, vars: Record<string, string | number | undefined>): string {
