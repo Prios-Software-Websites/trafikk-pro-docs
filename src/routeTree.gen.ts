@@ -23,6 +23,7 @@ import { Route as LarerKalenderRouteImport } from './routes/larer.kalender'
 import { Route as LarerEleverRouteImport } from './routes/larer.elever'
 import { Route as LarerAttesteringRouteImport } from './routes/larer.attestering'
 import { Route as ForesattVarslingerRouteImport } from './routes/foresatt.varslinger'
+import { Route as ForesattSmsRouteImport } from './routes/foresatt.sms'
 import { Route as ForesattOvingskjoringRouteImport } from './routes/foresatt.ovingskjoring'
 import { Route as ForesattOkonomiRouteImport } from './routes/foresatt.okonomi'
 import { Route as ForesattMeldingerRouteImport } from './routes/foresatt.meldinger'
@@ -116,6 +117,11 @@ const LarerAttesteringRoute = LarerAttesteringRouteImport.update({
 const ForesattVarslingerRoute = ForesattVarslingerRouteImport.update({
   id: '/foresatt/varslinger',
   path: '/foresatt/varslinger',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForesattSmsRoute = ForesattSmsRouteImport.update({
+  id: '/foresatt/sms',
+  path: '/foresatt/sms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForesattOvingskjoringRoute = ForesattOvingskjoringRouteImport.update({
@@ -264,6 +270,7 @@ export interface FileRoutesByFullPath {
   '/foresatt/meldinger': typeof ForesattMeldingerRoute
   '/foresatt/okonomi': typeof ForesattOkonomiRoute
   '/foresatt/ovingskjoring': typeof ForesattOvingskjoringRoute
+  '/foresatt/sms': typeof ForesattSmsRoute
   '/foresatt/varslinger': typeof ForesattVarslingerRoute
   '/larer/attestering': typeof LarerAttesteringRoute
   '/larer/elever': typeof LarerEleverRoute
@@ -304,6 +311,7 @@ export interface FileRoutesByTo {
   '/foresatt/meldinger': typeof ForesattMeldingerRoute
   '/foresatt/okonomi': typeof ForesattOkonomiRoute
   '/foresatt/ovingskjoring': typeof ForesattOvingskjoringRoute
+  '/foresatt/sms': typeof ForesattSmsRoute
   '/foresatt/varslinger': typeof ForesattVarslingerRoute
   '/larer/attestering': typeof LarerAttesteringRoute
   '/larer/elever': typeof LarerEleverRoute
@@ -345,6 +353,7 @@ export interface FileRoutesById {
   '/foresatt/meldinger': typeof ForesattMeldingerRoute
   '/foresatt/okonomi': typeof ForesattOkonomiRoute
   '/foresatt/ovingskjoring': typeof ForesattOvingskjoringRoute
+  '/foresatt/sms': typeof ForesattSmsRoute
   '/foresatt/varslinger': typeof ForesattVarslingerRoute
   '/larer/attestering': typeof LarerAttesteringRoute
   '/larer/elever': typeof LarerEleverRoute
@@ -387,6 +396,7 @@ export interface FileRouteTypes {
     | '/foresatt/meldinger'
     | '/foresatt/okonomi'
     | '/foresatt/ovingskjoring'
+    | '/foresatt/sms'
     | '/foresatt/varslinger'
     | '/larer/attestering'
     | '/larer/elever'
@@ -427,6 +437,7 @@ export interface FileRouteTypes {
     | '/foresatt/meldinger'
     | '/foresatt/okonomi'
     | '/foresatt/ovingskjoring'
+    | '/foresatt/sms'
     | '/foresatt/varslinger'
     | '/larer/attestering'
     | '/larer/elever'
@@ -467,6 +478,7 @@ export interface FileRouteTypes {
     | '/foresatt/meldinger'
     | '/foresatt/okonomi'
     | '/foresatt/ovingskjoring'
+    | '/foresatt/sms'
     | '/foresatt/varslinger'
     | '/larer/attestering'
     | '/larer/elever'
@@ -508,6 +520,7 @@ export interface RootRouteChildren {
   ForesattMeldingerRoute: typeof ForesattMeldingerRoute
   ForesattOkonomiRoute: typeof ForesattOkonomiRoute
   ForesattOvingskjoringRoute: typeof ForesattOvingskjoringRoute
+  ForesattSmsRoute: typeof ForesattSmsRoute
   ForesattVarslingerRoute: typeof ForesattVarslingerRoute
   LarerAttesteringRoute: typeof LarerAttesteringRoute
   LarerEleverRoute: typeof LarerEleverRoute
@@ -620,6 +633,13 @@ declare module '@tanstack/react-router' {
       path: '/foresatt/varslinger'
       fullPath: '/foresatt/varslinger'
       preLoaderRoute: typeof ForesattVarslingerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/foresatt/sms': {
+      id: '/foresatt/sms'
+      path: '/foresatt/sms'
+      fullPath: '/foresatt/sms'
+      preLoaderRoute: typeof ForesattSmsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/foresatt/ovingskjoring': {
@@ -841,6 +861,7 @@ const rootRouteChildren: RootRouteChildren = {
   ForesattMeldingerRoute: ForesattMeldingerRoute,
   ForesattOkonomiRoute: ForesattOkonomiRoute,
   ForesattOvingskjoringRoute: ForesattOvingskjoringRoute,
+  ForesattSmsRoute: ForesattSmsRoute,
   ForesattVarslingerRoute: ForesattVarslingerRoute,
   LarerAttesteringRoute: LarerAttesteringRoute,
   LarerEleverRoute: LarerEleverRoute,
