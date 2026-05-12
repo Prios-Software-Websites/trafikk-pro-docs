@@ -9,7 +9,7 @@ import { ShieldCheck, FileDown } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/tilsynsvisning")({
-  head: () => ({ meta: [{ title: "Tilsynsvisning — TrafikkDok. Pro" }] }),
+  head: () => ({ meta: [{ title: "Tilsynsvisning — Kjøreflyt" }] }),
   component: () => <RoleGate allow={["admin"]}><Sup /></RoleGate>,
 });
 

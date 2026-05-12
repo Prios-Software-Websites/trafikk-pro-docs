@@ -91,8 +91,8 @@ export function AppShell({ children }: { children: ReactNode }) {
               <CarFront className="size-4 text-primary-foreground" />
             </div>
             <div className="leading-tight">
-              <div className="text-sm font-bold tracking-tight">TrafikkDok.<span className="text-primary"> Pro</span></div>
-              <div className="text-[10px] text-muted-foreground">{t("school_name")}</div>
+              <div className="text-sm font-bold tracking-tight">Kjøreflyt</div>
+              <div className="text-[10px] text-muted-foreground">Prios × TA-Lappen</div>
             </div>
           </Link>
         </div>

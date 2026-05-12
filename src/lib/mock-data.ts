@@ -1,4 +1,4 @@
-// Mock data for TrafikkDokumentasjon Pro prototype.
+// Mock data for Kjøreflyt prototype.
 // All identifiers, names, and timestamps are fictional.
 
 export type LicenseClass = "B" | "BE" | "A" | "A2" | "C" | "CE";

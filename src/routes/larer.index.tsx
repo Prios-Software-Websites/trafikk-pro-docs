@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import { Pen } from "lucide-react";
 
 export const Route = createFileRoute("/larer/")({
-  head: () => ({ meta: [{ title: "Min dag — TrafikkDok. Pro" }] }),
+  head: () => ({ meta: [{ title: "Min dag — Kjøreflyt" }] }),
   component: () => <RoleGate allow={["teacher"]}><Day /></RoleGate>,
 });
 

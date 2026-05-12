@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import { ShieldCheck, AlertTriangle, FileText, ClockAlert, Database, FileWarning, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/admin/")({
-  head: () => ({ meta: [{ title: "Dashboard — TrafikkDok. Pro" }] }),
+  head: () => ({ meta: [{ title: "Dashboard — Kjøreflyt" }] }),
   component: () => <RoleGate allow={["admin"]}><AdminDashboard /></RoleGate>,
 });
 

@@ -6,7 +6,7 @@ import { useI18n } from "@/lib/i18n";
 import { packages, students } from "@/lib/mock-data";
 
 export const Route = createFileRoute("/admin/okonomi")({
-  head: () => ({ meta: [{ title: "Økonomi — TrafikkDok. Pro" }] }),
+  head: () => ({ meta: [{ title: "Økonomi — Kjøreflyt" }] }),
   component: () => <RoleGate allow={["admin"]}><Econ /></RoleGate>,
 });
 

@@ -5,7 +5,7 @@ export type Lang = "nb" | "en";
 type Dict = Record<string, string>;
 
 const nb: Dict = {
-  app_name: "TrafikkDokumentasjon Pro",
+  app_name: "Kjøreflyt",
   school_name: "Oslo Trafikkskole AS",
   // Roles
   role_admin: "Administrator / Faglig leder",
@@ -135,7 +135,7 @@ const nb: Dict = {
 };
 
 const en: Dict = {
-  app_name: "TrafikkDokumentasjon Pro",
+  app_name: "Kjøreflyt",
   school_name: "Oslo Driving School Ltd.",
   role_admin: "Administrator / Head of Training",
   role_teacher: "Driving Instructor",
